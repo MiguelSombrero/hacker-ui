@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { BrowserRouter } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getBooks } from './reducers/booksReducer'
 import { getEmployees } from './reducers/employeesReducer'
 import NavBar from './components/NavBar'
@@ -18,17 +18,11 @@ const App = () => {
     dispatch(getEmployees())
   }, [])
 
-  const books = useSelector(state => state.books)
-  console.log(books)
-
-  const employees = useSelector(state => state.employees)
-  console.log(employees)
-
   return (
     <Container fluid>
       <BrowserRouter>
         <NavBar />
-        <Router books={books} />
+        <Router />
       </BrowserRouter>
     </Container>
   )

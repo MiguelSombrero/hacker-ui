@@ -2,13 +2,16 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import FrontPage from './FrontPage'
 import Books from './Books'
+import Employees from './Employees'
 
-const Router = ({ books }) =>
+const Router = () =>
     <Switch>
       <Route path='/books'>
-        <Books books={books} />
+        <Books />
       </Route>
-
+      <Route path='/employees'>
+        <Employees />
+      </Route>
       <Route exact path='/'>
         <FrontPage />
       </Route>

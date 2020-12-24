@@ -1,6 +1,6 @@
 import { Service } from '../service'
 
-const employeesService = Service('/api/employees/')
+const employeesService = Service('/api/employees')
 
 const employeesReducer = (state = [], action) => {
   switch (action.type) {
