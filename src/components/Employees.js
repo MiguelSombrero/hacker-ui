@@ -6,18 +6,23 @@ import { Link } from 'react-router-dom'
 import Employee from './Employee'
 
 const Employees = () => {
-  const [filter, setFilter] = useState('')
+  const [filters, setFilters] = useState([])
 
-  const employees = useSelector(state => state.employees)
+  console.log(filters)
 
-  const hasSkill = employee =>
-    employee.skills.filter(skill =>
-      skill.name.toLowerCase().includes(filter.toLowerCase())).length > 0
+  const filterContains = skill =>
+    filters.some(filter => skill.name.toLowerCase() === filter.toLowerCase())
 
-  const employeesToShow = employees.filter(employee => hasSkill(employee))
+  const hasAllOfSkills = employee =>
+    filters.every(filter => employee.skills.some(skill =>
+      skill.name.toLowerCase() === filter.toLowerCase()))
+
+  const employees = useSelector(state =>
+    state.employees.filter(hasAllOfSkills))
 
   const handleChange = (event) => {
-    setFilter(event.target.value)
+    const filters = event.target.value.split(' ')
+    setFilters(filters[0] === '' ? [] : filters)
   }
 
   return (
@@ -37,13 +42,22 @@ const Employees = () => {
     <Row >
       <Col>
         <ListGroup variant='flush' className='text-center'>
-          {employeesToShow && employeesToShow.map(employee =>
-          <ListGroup.Item action key={employee.firstname} >
+          {employees && employees.map(employee =>
+          <ListGroup.Item key={employee.firstname.concat(employee.lastname)} >
             <Row>
               <Col>
-                <Link to={{ pathname: `/employees/${employee.lastname}`, state: { employee: {...employee} } }}>
-                  <h3>{employee.firstname}</h3>
+                <Link to={{ pathname: `/employees/${employee.firstname.concat(employee.lastname)}`, state: { employee: {...employee} } }}>
+                  <h3>{[employee.firstname, employee.lastname].join(' ')}</h3>
                 </Link>    
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={{ span: 4, offset: 4 }} >
+                {employee.skills.filter(filterContains).map(skill =>
+                <p key={employee.firstname.concat(employee.lastname).concat(skill.name)}>
+                  {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
+                </p>
+                )}
               </Col>
             </Row>
           </ListGroup.Item>
