@@ -1,42 +1,37 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Form } from 'react-bootstrap'
+import { Row, Col, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useFilters } from '../hooks'
+import Search from './Search'
 
 const Books = () => {
-  const [filter, setFilter] = useState('')
+  const [filters, onChange] = useFilters()
 
-  const books = useSelector(state => state.books)
+  const hasName = book =>
+    filters.every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const booksToShow = books.filter(book =>
-    book.name.toLowerCase().includes(filter.toLowerCase()))
-
-  const handleChange = (event) => {
-    setFilter(event.target.value)
-  }
+  const books = useSelector(state =>
+    state.books.filter(hasName))
 
   return (
     <>
     <Row>
       <Col>
-        <Form inline className='justify-content-center p-3 m-3'>
-          <Form.Control
-            onChange={handleChange}
-            name='filter'
-            type ='text'
-            placeholder='filter books ...'>
-          </Form.Control>
-        </Form>
+        <Search
+          onChange={onChange}
+          placeholder='filter books ...'
+        />
       </Col>
     </Row>
     <Row >
       <Col>
         <ListGroup variant='flush' className='text-center'>
-          {booksToShow && booksToShow.map(book =>
-          <ListGroup.Item action key={book.name} >
+          {books.map(book =>
+          <ListGroup.Item action key={book.id} >
             <Row>
               <Col>
-                <Link to={{ pathname: `/books/${book.name}`, state: { book: {...book} } }}>
+                <Link to={`/books/${book.id}`}>
                   <h3>{book.name}</h3>
                 </Link>    
 
@@ -45,7 +40,8 @@ const Books = () => {
                 </p>
               </Col>
               <Col>
-                <h4>{book.rating}</h4>
+                <h4>{book.rating + ' / 5'}</h4>
+                <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
               </Col>
             </Row>
           </ListGroup.Item>

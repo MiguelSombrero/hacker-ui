@@ -4,14 +4,18 @@ import FrontPage from './FrontPage'
 import Books from './Books'
 import Book from './Book'
 import Employees from './Employees'
+import Employee from './Employee'
 
 const Router = () =>
     <Switch>
-      <Route path='/books/:name'>
+      <Route path='/books/:bookId'>
         <Book />
       </Route>
       <Route path='/books'>
         <Books />
+      </Route>
+      <Route path='/employees/:employeeId'>
+        <Employee />
       </Route>
       <Route path='/employees'>
         <Employees />

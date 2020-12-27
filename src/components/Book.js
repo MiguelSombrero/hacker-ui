@@ -1,9 +1,17 @@
 import React from 'react'
 import { Row, Col, Badge, Card, CardColumns } from 'react-bootstrap'
-import { withRouter } from 'react-router-dom'
+import { withRouter, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const Book = ({ location }) => {
-  const book = location.state.book
+const Book = () => {
+  const { bookId } = useParams();
+
+  const byId = book =>
+    book.id === Number(bookId)
+
+  const book = useSelector(state =>
+    state.books.find(byId)
+  )
 
   const authors = book.authors.map(author =>
     author.lastname + ' ' + author.firstname).join(', ')
@@ -23,14 +31,16 @@ const Book = ({ location }) => {
       <Col xs={12} md={8} >
         <CardColumns>
           {book.reviews.map(review =>
-          <Card key={review.review} >
+          <Card key={review.id} >
             <Card.Body>
               <Card.Title>
                 {review.reviewer.firstname + ' ' + review.reviewer.lastname}
-                <Badge variant="warning" style={{ float: 'right' }}>{review.rating}</Badge>
               </Card.Title>
               <Card.Text>
                 {review.review}
+              </Card.Text>
+              <Card.Text>
+                <small className="text-muted">{review.rating + ' / 5'}</small>
               </Card.Text>
             </Card.Body>
           </Card>
