@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useFilters } from '../hooks'
-import { Row, Col, Form, ListGroup } from 'react-bootstrap'
+import { Row, Col, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { byKnowHow, bySumOfKnowHows } from '../functions/sorting'
 import Search from './Search'
 
 const Employees = () => {
@@ -15,8 +16,16 @@ const Employees = () => {
     filters.every(filter => employee.skills.some(skill =>
       skill.name.toLowerCase() === filter.toLowerCase()))
 
+  const employeeToShow = employee => {
+    return {...employee, skills: employee.skills.filter(filterContains).sort(byKnowHow)}
+   }
+
   const employees = useSelector(state =>
-    state.employees.filter(hasAllOfSkills))
+    state.employees.filter(hasAllOfSkills)
+      .map(employeeToShow)
+  )
+
+  console.log(employees)
 
   return (
     <>
@@ -31,7 +40,7 @@ const Employees = () => {
     <Row >
       <Col>
         <ListGroup variant='flush' className='text-center'>
-          {employees && employees.map(employee =>
+          {employees.map(employee =>
           <ListGroup.Item key={employee.id} >
             <Row>
               <Col>
@@ -42,7 +51,7 @@ const Employees = () => {
             </Row>
             <Row>
               <Col xs={12} md={{ span: 4, offset: 4 }} >
-                {employee.skills.filter(filterContains).map(skill =>
+                {employee.skills.map(skill =>
                 <p key={skill.id}>
                   {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
                 </p>
