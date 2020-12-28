@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useFilters } from '../hooks'
 import { Row, Col, ListGroup } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { byKnowHow, bySumOfKnowHows } from '../functions/sorting'
+import { bySkillMaxKnowHow } from '../functions/reducers'
 import Search from './Search'
+import EmployeeSearchResult from './EmployeeSearchResult'
 
 const Employees = () => {
   const [filters, onChange] = useFilters()
+  const [inProject, setInProject] = useState([])
+
+  const employees = useSelector(state => state.employees)
 
   const filterContains = skill =>
     filters.some(filter => skill.name.toLowerCase() === filter.toLowerCase())
@@ -16,16 +19,9 @@ const Employees = () => {
     filters.every(filter => employee.skills.some(skill =>
       skill.name.toLowerCase() === filter.toLowerCase()))
 
-  const employeeToShow = employee => {
-    return {...employee, skills: employee.skills.filter(filterContains).sort(byKnowHow)}
-   }
-
-  const employees = useSelector(state =>
-    state.employees.filter(hasAllOfSkills)
-      .map(employeeToShow)
-  )
-
-  console.log(employees)
+  const maxSkills =
+    Object.values(inProject.map(employee => employee.skills).flat()
+      .reduce(bySkillMaxKnowHow, {}))
 
   return (
     <>
@@ -37,30 +33,33 @@ const Employees = () => {
         />
       </Col>
     </Row>
-    <Row >
-      <Col>
-        <ListGroup variant='flush' className='text-center'>
-          {employees.map(employee =>
-          <ListGroup.Item key={employee.id} >
-            <Row>
-              <Col>
-                <Link to={`/employees/${employee.id}`}>
-                  <h3>{[employee.firstname, employee.lastname].join(' ')}</h3>
-                </Link>    
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={{ span: 4, offset: 4 }} >
-                {employee.skills.map(skill =>
-                <p key={skill.id}>
-                  {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
-                </p>
-                )}
-              </Col>
-            </Row>
+    <Row className='text-center'>
+      <Col xs={12} md={4} >
+        <h3>Haku</h3>
+        <EmployeeSearchResult
+          employees={employees.filter(hasAllOfSkills)}
+          inProject={inProject}
+          setInProject={setInProject}
+          filterContains={filterContains}
+        />
+      </Col>
+      <Col xs={12} md={4}>
+        <h3>Hakkerit</h3>
+        <ListGroup variant='flush'>
+          {inProject.map(employee =>
+          <ListGroup.Item action key={employee.id} >
+            <h3>{[employee.firstname, employee.lastname].join(' ')}</h3>   
           </ListGroup.Item>
           )}
         </ListGroup>
+      </Col>
+      <Col xs={12} md={4} >
+        <h3>Osaaminen</h3>
+          {maxSkills.map((skill, id) =>
+            <p key={id}>
+              {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
+            </p>
+          )}
       </Col>
     </Row>
     </>
