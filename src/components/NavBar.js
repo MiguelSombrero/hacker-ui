@@ -15,7 +15,7 @@ const NavBar = () =>
               <NavLink to='/books' >Kirjat</NavLink>
             </Nav.Link>
             <Nav.Link href='#' as='span'>
-              <NavLink to='/employees' >Työntekijät</NavLink>
+              <NavLink to='/employees' >Hakkerit</NavLink>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

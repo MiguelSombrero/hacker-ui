@@ -12,9 +12,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getBooks())
-  }, [])
-
-  useEffect(() => {
     dispatch(getEmployees())
   }, [])
 
