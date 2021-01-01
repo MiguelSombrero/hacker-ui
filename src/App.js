@@ -6,6 +6,7 @@ import { getBooks } from './reducers/booksReducer'
 import { getEmployees } from './reducers/employeesReducer'
 import NavBar from './components/NavBar'
 import Router from './components/Router'
+import Footer from './components/Footer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const App = () => {
       <BrowserRouter>
         <NavBar />
         <Router />
+        <Footer />
       </BrowserRouter>
     </Container>
   )

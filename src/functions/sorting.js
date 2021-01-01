@@ -8,3 +8,6 @@ export const employeeBySumOfSkillKnowHows = (current, next) =>
   
 export const bookByReviewCreated = (current, next) =>
   current.reviews.reduce(reviewByGreatestCreated).created > next.reviews.reduce(reviewByGreatestCreated).created ? -1 : 1
+
+export const reviewByCreated = (current, next) =>
+  current.created > next.created ? -1 : 1
