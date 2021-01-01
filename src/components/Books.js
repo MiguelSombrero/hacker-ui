@@ -14,8 +14,6 @@ const Books = () => {
   const books = useSelector(state =>
     state.books.filter(hasName))
 
-  console.log(books)
-
   return (
     <>
     <Row>

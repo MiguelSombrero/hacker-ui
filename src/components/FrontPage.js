@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import { bookByReviewCreated } from '../functions/sorting'
+import { reviewByGreatestCreated } from '../functions/reducers'
+import Review from './Review'
 
 const FrontPage = () => {
   const [visible, setVisible] = useState(5)
@@ -12,13 +14,19 @@ const FrontPage = () => {
   const booksToShow = books.slice(0, visible)
 
   console.log(booksToShow)
-
+  
   return (
     <Row>
-      <Col>
+      <Col xs={12} md={3}>
+
+      </Col>
+      <Col xs={12} md={6}>
         {booksToShow.map(book =>
-          <p key={book.id} >{book.name}</p>
+          <Review key={book.id} book={book} review={book.reviews.reduce(reviewByGreatestCreated)} />
         )}
+      </Col>
+      <Col xs={12} md={3}>
+
       </Col>
     </Row>
   )
