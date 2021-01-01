@@ -14,6 +14,8 @@ const Books = () => {
   const books = useSelector(state =>
     state.books.filter(hasName))
 
+  console.log(books)
+
   return (
     <>
     <Row>
@@ -32,12 +34,9 @@ const Books = () => {
             <Row>
               <Col>
                 <Link to={`/books/${book.id}`}>
-                  <h3>{book.name}</h3>
+                  <h3>{book.name + ' (' + book.type + ')'}</h3>
                 </Link>    
-
-                <p>{book.authors.map(author =>
-                  author.lastname + ' ' + author.firstname).join(', ')}
-                </p>
+                <p>{book.authors}</p>
               </Col>
               <Col>
                 <h4>{book.rating + ' / 5'}</h4>

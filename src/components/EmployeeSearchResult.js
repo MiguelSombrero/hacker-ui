@@ -1,6 +1,6 @@
 import React from 'react'
-import { Row, Col, ListGroup, Button, Form } from 'react-bootstrap'
-import { byKnowHow, bySumOfKnowHows } from '../functions/sorting'
+import { Row, Col, ListGroup } from 'react-bootstrap'
+import { skillByKnowHow, employeeBySumOfSkillKnowHows } from '../functions/sorting'
 import { Link } from 'react-router-dom'
 
 const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProject }) => {
@@ -11,7 +11,7 @@ const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProje
 
   return (
     <ListGroup variant='flush'>
-      {employees.sort(bySumOfKnowHows).map(employee =>
+      {employees.sort(employeeBySumOfSkillKnowHows).map(employee =>
         <ListGroup.Item key={employee.id} action >
           <Row className='mb-2 pb-2'>
             <Col>
@@ -32,7 +32,7 @@ const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProje
           </Row>
           <Row>
             <Col >
-              {employee.skills.filter(filterContains).sort(byKnowHow).map(skill =>
+              {employee.skills.filter(filterContains).sort(skillByKnowHow).map(skill =>
                 <p key={skill.id}>
                   {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
                 </p>

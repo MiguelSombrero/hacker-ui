@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter, useParams } from 'react-router-dom'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import { byKnowHow } from '../functions/sorting'
+import { skillByKnowHow } from '../functions/sorting'
 
 const Employee = () => {
   const { employeeId } = useParams();
@@ -25,7 +25,7 @@ const Employee = () => {
       <Col className='text-center' xs={12} md={3} >
         <h4>Osaaminen</h4>
         <ListGroup variant='flush'>
-          {employee.skills.sort(byKnowHow).map(skill =>
+          {employee.skills.sort(skillByKnowHow).map(skill =>
           <ListGroup.Item key={skill.id} >
             {skill.name + ' ' + skill.knowHowMonths}
           </ListGroup.Item>

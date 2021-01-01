@@ -13,16 +13,13 @@ const Book = () => {
     state.books.find(byId)
   )
 
-  const authors = book.authors.map(author =>
-    author.lastname + ' ' + author.firstname).join(', ')
-
   return (
     <>
     <Row>
         <Col className='text-center' xs={12} md={{ span: 8, offset: 2 }}>
           <h1><Badge style={{ float: 'right' }} variant="warning">{book.rating}</Badge></h1>
           <h1>{book.name}</h1>
-          <p>{authors}</p>
+          <p>{book.authors}</p>
         </Col>
     </Row>
     <Row>

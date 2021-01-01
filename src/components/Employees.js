@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useFilters } from '../hooks'
 import { Row, Col, ListGroup } from 'react-bootstrap'
-import { bySkillMaxKnowHow } from '../functions/reducers'
+import { skillByMaxKnowHow } from '../functions/reducers'
 import Search from './Search'
 import EmployeeSearchResult from './EmployeeSearchResult'
 
@@ -21,7 +21,7 @@ const Employees = () => {
 
   const maxSkills =
     Object.values(inProject.map(employee => employee.skills).flat()
-      .reduce(bySkillMaxKnowHow, {}))
+      .reduce(skillByMaxKnowHow, {}))
 
   const employeeToShow = employees.filter(hasAllOfSkills)
 
@@ -50,7 +50,7 @@ const Employees = () => {
         />
       </Col>
       <Col xs={12} md={4}>
-        <h2 className='mb-2 pb-2'>Hakkerit</h2>
+        <h2 className='mb-2 pb-2'>Valittu tiimi</h2>
         <ListGroup variant='flush'>
           {inProject.map(employee =>
           <ListGroup.Item action key={employee.id} onClick={() => handleRemoveHacker(employee)} >
@@ -60,7 +60,7 @@ const Employees = () => {
         </ListGroup>
       </Col>
       <Col xs={12} md={4} >
-        <h2 className='mb-2 pb-2'>Osaaminen</h2>
+        <h2 className='mb-2 pb-2'>Tiimin osaaminen</h2>
           {maxSkills.map((skill, id) =>
             <p key={id}>
               {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
