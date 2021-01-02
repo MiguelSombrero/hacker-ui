@@ -2,7 +2,7 @@
 
 Hacker UI is an application for plaa plaa
 
-For more details and documentation, see [Hacker-API]() repository.
+For more details and documentation, see [Hacker API](git@github.com:MiguelSombrero/hacker-api.git) repository.
 
 ## Available Scripts
 
