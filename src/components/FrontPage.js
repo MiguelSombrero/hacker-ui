@@ -26,6 +26,8 @@ const FrontPage = () => {
     .map(book => book.reviews
       .map(review => reviewWithBook(review, book)))
     .flat()
+  
+  const reviewsToShow = reviews
     .sort(reviewByCreated)
     .slice(0, visible)
 
@@ -37,23 +39,17 @@ const FrontPage = () => {
       <Banner text='Hakkeri Portaali' />
     </Row>
     <Row>
-      <Col xs={12} md={3}>
-        <h2>Uutiset</h2>
-      </Col>
-      <Col xs={12} md={6} >
-        <h2>Uusimmat kirja-arviot</h2>
-        {reviews.map(review =>
+      <Col id='review-column' xs={12} md={{ span: 6, offset: 3 }} >
+        <h2 className='p-2'>Uusimmat kirja-arviot</h2>
+        {reviewsToShow.map(review =>
           <Review key={review.id} review={review} />
         )}
-      </Col>
-      <Col xs={12} md={3}>
-
       </Col>
     </Row>
     <Row>
       <Col className='d-flex justify-content-center m-2'>
         {reviews.length > visible &&
-          <Button onClick={handleShowMore}>Lataa lisää</Button>
+          <Button id='show-more-button' onClick={handleShowMore}>Lataa lisää</Button>
         }
       </Col>
     </Row>

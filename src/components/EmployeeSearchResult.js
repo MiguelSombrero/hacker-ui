@@ -1,7 +1,8 @@
 import React from 'react'
-import { Row, Col, ListGroup } from 'react-bootstrap'
+import { Row, Col, Card, Accordion, Button } from 'react-bootstrap'
 import { skillByKnowHow, employeeBySumOfSkillKnowHows } from '../functions/sorting'
 import { Link } from 'react-router-dom'
+import { roundTo1Dec } from '../functions/numbers'
 
 const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProject }) => {
 
@@ -9,39 +10,44 @@ const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProje
     setInProject([...new Set(inProject.concat(employee))])
   }
 
+  const linkPanel = employee =>
+    <Row className='mb-2 pb-2'>
+      <Col>
+        <Link to={`/hackers/${employee.id}`}>
+          <button >
+            Profiili
+          </button>
+        </Link> 
+      </Col>
+      <Col>
+        <button onClick={() => handleClick(employee)} >
+          Valitse
+        </button>
+      </Col>
+    </Row>
+
   return (
-    <ListGroup variant='flush'>
-      {employees.sort(employeeBySumOfSkillKnowHows).map(employee =>
-        <ListGroup.Item key={employee.id} action >
-          <Row className='mb-2 pb-2'>
-            <Col>
-              <h3>{[employee.firstname, employee.lastname].join(' ')}</h3>    
-            </Col>
-          </Row>
-          <Row className='mb-2 pb-2'>
-            <Col>
-              <Link to={`/employees/${employee.id}`}>
-                Profiili
-              </Link> 
-            </Col>
-            <Col>
-              <p onClick={() => handleClick(employee)} >
-                Valitse
-              </p>
-            </Col>
-          </Row>
-          <Row>
-            <Col >
-              {employee.skills.filter(filterContains).sort(skillByKnowHow).map(skill =>
-                <p key={skill.id}>
-                  {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
-                </p>
-              )}
-            </Col>
-          </Row>
-        </ListGroup.Item>
-      )}
-    </ListGroup>
+    employees.sort(employeeBySumOfSkillKnowHows).map(employee =>
+      <Accordion key={employee.id} className='mb-2'>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+              <Card.Title>{[employee.firstname, employee.lastname].join(' ')}</Card.Title>
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="0">
+              {linkPanel(employee)}
+            </Accordion.Collapse>
+          </Card.Header>
+          <Card.Body>
+            {employee.skills.filter(filterContains).sort(skillByKnowHow).map(skill =>
+              <Card.Text key={skill.id}>
+                {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
+              </Card.Text>
+            )}
+          </Card.Body>
+        </Card>
+      </Accordion>
+    )
   )
 }
         

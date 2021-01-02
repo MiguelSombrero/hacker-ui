@@ -3,12 +3,13 @@ import { withRouter, useParams } from 'react-router-dom'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { skillByKnowHow } from '../functions/sorting'
+import { roundTo1Dec } from '../functions/numbers'
 
 const Employee = () => {
-  const { employeeId } = useParams();
+  const { hackerId } = useParams();
 
   const byId = employee =>
-    employee.id === Number(employeeId)
+    employee.id === Number(hackerId)
 
   const employee = useSelector(state =>
     state.employees.find(byId)
@@ -27,7 +28,7 @@ const Employee = () => {
         <ListGroup variant='flush'>
           {employee.skills.sort(skillByKnowHow).map(skill =>
           <ListGroup.Item key={skill.id} >
-            {skill.name + ' ' + skill.knowHowMonths}
+            {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
           </ListGroup.Item>
           )}
         </ListGroup>

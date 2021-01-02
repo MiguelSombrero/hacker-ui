@@ -14,10 +14,10 @@ const Router = () =>
       <Route path='/books'>
         <Books />
       </Route>
-      <Route path='/employees/:employeeId'>
+      <Route path='/hackers/:hackerId'>
         <Employee />
       </Route>
-      <Route path='/employees'>
+      <Route path='/hackers'>
         <Employees />
       </Route>
       <Route exact path='/'>

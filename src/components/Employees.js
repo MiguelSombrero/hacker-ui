@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux'
 import { useFilters } from '../hooks'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { skillByMaxKnowHow } from '../functions/reducers'
+import { roundTo1Dec } from '../functions/numbers'
 import Search from './Search'
 import EmployeeSearchResult from './EmployeeSearchResult'
+import Banner from './Banner'
 
 const Employees = () => {
   const [filters, onChange] = useFilters()
@@ -19,8 +21,8 @@ const Employees = () => {
     filters.every(filter => employee.skills.some(skill =>
       skill.name.toLowerCase() === filter.toLowerCase()))
 
-  const maxSkills =
-    Object.values(inProject.map(employee => employee.skills).flat()
+  const maxSkills = Object.values(inProject
+    .map(employee => employee.skills).flat()
       .reduce(skillByMaxKnowHow, {}))
 
   const employeeToShow = employees.filter(hasAllOfSkills)
@@ -32,10 +34,13 @@ const Employees = () => {
   return (
     <>
     <Row>
+      <Banner text='Rakenna tiimi' />
+    </Row>
+    <Row>
       <Col>
         <Search
           onChange={onChange}
-          placeholder='filter employees ...'
+          placeholder='hae osaamisen perusteella'
         />
       </Col>
     </Row>
@@ -63,7 +68,7 @@ const Employees = () => {
         <h2 className='mb-2 pb-2'>Tiimin osaaminen</h2>
           {maxSkills.map((skill, id) =>
             <p key={id}>
-              {skill.name + ' ' + skill.knowHowMonths + ' kuukautta'}
+              {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
             </p>
           )}
       </Col>

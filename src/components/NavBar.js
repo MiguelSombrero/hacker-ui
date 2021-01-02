@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 
 const NavBar = () =>
-    <Row >
+    <Row id='navbar'>
       <Navbar as={Col} collapseOnSelect expand='lg' >
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
@@ -15,7 +15,7 @@ const NavBar = () =>
               <NavLink to='/books' >Kirjat</NavLink>
             </Nav.Link>
             <Nav.Link href='#' as='span'>
-              <NavLink to='/employees' >Hakkerit</NavLink>
+              <NavLink to='/hackers' >Hakkerit</NavLink>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

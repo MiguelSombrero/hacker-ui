@@ -32,7 +32,7 @@ const Books = () => {
             <Row>
               <Col>
                 <Link to={`/books/${book.id}`}>
-                  <h3>{book.name + ' (' + book.type + ')'}</h3>
+                  <h3>{book.name + ' (' + book.type.name + ')'}</h3>
                 </Link>    
                 <p>{book.authors}</p>
               </Col>
