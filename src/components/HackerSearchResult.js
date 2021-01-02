@@ -4,7 +4,7 @@ import { skillByKnowHow, employeeBySumOfSkillKnowHows } from '../functions/sorti
 import { Link } from 'react-router-dom'
 import { roundTo1Dec } from '../functions/numbers'
 
-const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProject }) => {
+const HackerSearchResult = ({ employees, filterContains, inProject, setInProject }) => {
 
   const handleClick = employee => {
     setInProject([...new Set(inProject.concat(employee))])
@@ -51,4 +51,4 @@ const EmployeeSearchResult = ({ employees, filterContains, inProject, setInProje
   )
 }
         
-export default EmployeeSearchResult
+export default HackerSearchResult

@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import FrontPage from './FrontPage'
 import Books from './Books'
 import Book from './Book'
-import Employees from './Employees'
-import Employee from './Employee'
+import Hackers from './Hackers'
+import Hacker from './Hacker'
 
 const Router = () =>
     <Switch>
@@ -15,10 +15,10 @@ const Router = () =>
         <Books />
       </Route>
       <Route path='/hackers/:hackerId'>
-        <Employee />
+        <Hacker />
       </Route>
       <Route path='/hackers'>
-        <Employees />
+        <Hackers />
       </Route>
       <Route exact path='/'>
         <FrontPage />

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { skillByKnowHow } from '../functions/sorting'
 import { roundTo1Dec } from '../functions/numbers'
 
-const Employee = () => {
+const Hacker = () => {
   const { hackerId } = useParams();
 
   const byId = employee =>
@@ -44,4 +44,4 @@ const Employee = () => {
   )
 }
 
-export default withRouter(Employee)
+export default withRouter(Hacker)

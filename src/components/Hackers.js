@@ -5,10 +5,10 @@ import { Row, Col, ListGroup } from 'react-bootstrap'
 import { skillByMaxKnowHow } from '../functions/reducers'
 import { roundTo1Dec } from '../functions/numbers'
 import Search from './Search'
-import EmployeeSearchResult from './EmployeeSearchResult'
+import HackerSearchResult from './HackerSearchResult'
 import Banner from './Banner'
 
-const Employees = () => {
+const Hackers = () => {
   const [filters, onChange] = useFilters()
   const [inProject, setInProject] = useState([])
 
@@ -48,7 +48,7 @@ const Employees = () => {
     <Row className='text-center'>
       <Col xs={12} md={4} >
         <h2 className='mb-2 pb-2'>Hakutulokset</h2>
-        <EmployeeSearchResult
+        <HackerSearchResult
           employees={employeeToShow}
           inProject={inProject}
           setInProject={setInProject}
@@ -78,4 +78,4 @@ const Employees = () => {
   )
 }
 
-export default Employees
+export default Hackers
