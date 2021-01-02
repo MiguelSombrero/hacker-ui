@@ -39,6 +39,7 @@ const Employees = () => {
     <Row>
       <Col>
         <Search
+          id='filter-hackers-field'
           onChange={onChange}
           placeholder='hae osaamisen perusteella'
         />

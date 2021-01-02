@@ -19,6 +19,7 @@ const Books = () => {
     <Row>
       <Col>
         <Search
+          id='filter-books-field'
           onChange={onChange}
           placeholder='filter books ...'
         />
