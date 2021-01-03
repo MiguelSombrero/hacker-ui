@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Jumbotron } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 import Banner from './Banner'
 
 const Footer = () =>

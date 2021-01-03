@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useFilters } from '../hooks'
 import { bookByRating } from '../functions/sorting'
 import Search from './Search'
+import Banner from './Banner'
 
 const Books = () => {
   const [filters, onChange] = useFilters()
@@ -17,6 +18,9 @@ const Books = () => {
 
   return (
     <>
+    <Row>
+      <Banner text='Eti kirja' />
+    </Row>
     <Row>
       <Col>
         <Search

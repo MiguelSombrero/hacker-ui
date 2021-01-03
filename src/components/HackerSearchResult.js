@@ -6,7 +6,7 @@ import { roundTo1Dec } from '../functions/numbers'
 
 const HackerSearchResult = ({ employees, filterContains, handleAddToTeam }) =>
   <>
-  <h2 className='mb-2 pb-2'>Hakutulokset</h2>
+  <h2 className='mb-2 pb-2 text-center'>Hakutulokset</h2>
   {employees.sort(employeeBySumOfSkillKnowHows).map(employee =>
     <Card key={employee.id} className='mb-2' style={{ maxWidth: '25rem' }}>
       <Card.Header>

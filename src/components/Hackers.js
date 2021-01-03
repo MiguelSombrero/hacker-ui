@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap'
 import Search from './Search'
 import HackerSearchResult from './HackerSearchResult'
 import Banner from './Banner'
+import KnowHowPanel from './KnowHowPanel'
 import TeamPanel from './TeamPanel'
 
 const Hackers = () => {
@@ -13,14 +14,14 @@ const Hackers = () => {
 
   const employees = useSelector(state => state.employees)
 
-  const filterContains = skill =>
-    filters.length === 0 || filters.some(filter => skill.name.toLowerCase() === filter.toLowerCase())
+  const filterContains = skill => filters.length === 0 ||
+    filters.some(filter => skill.name.toLowerCase() === filter.toLowerCase())
 
   const hasAllOfSkills = employee =>
     filters.every(filter => employee.skills.some(skill =>
       skill.name.toLowerCase() === filter.toLowerCase()))
 
-  const employeeToShow = employees.filter(hasAllOfSkills)
+  const employeesToShow = employees.filter(hasAllOfSkills)
 
   const handleAddToTeam = hacker => {
     setTeam([...new Set(team.concat(hacker))])
@@ -37,15 +38,18 @@ const Hackers = () => {
     </Row>
     <Row>
       <Col>
-        <Search id='filter-hackers-field' onChange={onChange} placeholder='hae osaamisen perusteella' />
+        <Search id='filter-hackers-field' onChange={onChange} placeholder='java, mule, python ...' />
       </Col>
     </Row>
     <Row>
-      <Col xs={12} md={6}>
-        <HackerSearchResult employees={employeeToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
-      </Col>
-      <Col xs={12} md={6}>
+      <Col xs={12} md={4}>
         <TeamPanel team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+      </Col>
+      <Col xs={12} md={4}>
+        <HackerSearchResult employees={employeesToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
+      </Col>
+      <Col xs={12} md={4}>
+        <KnowHowPanel team={team} />
       </Col>
     </Row>
     </>

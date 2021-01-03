@@ -14,7 +14,7 @@ context('Contents of Hackers page', () => {
       it('.should() - make an assertion about titles', function() {
         cy.contains('Rakenna tiimi')
         cy.contains('Hakutulokset')
-        cy.contains('Valittu tiimi')
+        cy.contains('Tiimissä')
         cy.contains('Tiimin osaaminen')
       })
     })

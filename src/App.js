@@ -14,6 +14,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getBooks())
     dispatch(getEmployees())
+    // eslint-disable-next-line
   }, [])
 
   return (
