@@ -16,3 +16,7 @@ code {
   background-color: white;
   color: rgb(227, 38, 33);
 }
+
+.navbar-nav span a {
+  color: white;
+}

@@ -98,7 +98,7 @@ context('Contents and navigation of Hackers page', () => {
           .should('have.length', 1)
         
         cy.get('html')
-          .should('contain', 'Jukka Rasila')
+          .should('contain', 'Jukka Jukkanen')
           .and('contain', 'Xml')
           .and('contain', 'Java')
           .and('contain', 'Mule')

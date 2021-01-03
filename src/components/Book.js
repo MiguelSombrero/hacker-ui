@@ -15,7 +15,7 @@ const Book = () => {
 
   return (
     <>
-    <Row>
+    <Row className='m-2 p-2'>
         <Col className='text-center' xs={12} md={{ span: 8, offset: 2 }}>
           <h1><Badge style={{ float: 'right' }} variant="warning">{book.rating}</Badge></h1>
           <h1>{book.name}</h1>

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFilters } from '../hooks'
+import { bookByRating } from '../functions/sorting'
 import Search from './Search'
 
 const Books = () => {
@@ -28,7 +29,7 @@ const Books = () => {
     <Row >
       <Col>
         <ListGroup variant='flush' className='text-center'>
-          {books.map(book =>
+          {books.sort(bookByRating).map(book =>
           <ListGroup.Item action key={book.id} >
             <Row>
               <Col>

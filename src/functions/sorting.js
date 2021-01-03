@@ -11,3 +11,6 @@ export const bookByReviewCreated = (current, next) =>
 
 export const reviewByCreated = (current, next) =>
   current.created > next.created ? -1 : 1
+
+export const bookByRating = (current, next) =>
+  current.rating > next.rating ? -1 : 1

@@ -4,7 +4,7 @@ import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 
 const NavBar = () =>
     <Row id='navbar'>
-      <Navbar as={Col} collapseOnSelect expand='lg' >
+      <Navbar as={Col} collapseOnSelect expand='lg' bg='dark' variant='dark'>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
