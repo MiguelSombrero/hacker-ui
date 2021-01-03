@@ -1,5 +1,5 @@
 
-context('Contents and navigation of Books page', () => {
+context('Contents of Books page', () => {
   beforeEach(function() {
     cy.visit('http://localhost:3000/books')
   })
@@ -17,37 +17,6 @@ context('Contents and navigation of Books page', () => {
       cy.get('.list-group-item')
         .should('have.length.at.least', 10)
     })
-  })
-
-  describe('Navigation bar is redirecting correctly', function() {
-    it('.should() - navigate to home page', function() {
-      cy.get('#navbar').contains('Koti').click()
-
-      cy.location('pathname')
-        .should('not.include', 'books')
-
-      cy.go('back')
-
-      cy.location('pathname')
-        .should('include', 'books')    
-    })
-
-    it('.should() - navigate to hackers page', function() {
-        cy.get('#navbar').contains('Hakkerit').click()
-  
-        cy.location('pathname')
-          .should('include', 'hackers')
-        
-          cy.go('back')
-
-        cy.location('pathname')
-          .should('not.include', 'hackers')
-
-        cy.go('forward')
-
-        cy.location('pathname')
-          .should('include', 'hackers')
-      })
   })
 
   describe('Filtering books works', function() {

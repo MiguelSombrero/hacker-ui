@@ -1,5 +1,5 @@
 
-context('Contents and navigation of Hackers page', () => {
+context('Contents of Hackers page', () => {
     beforeEach(function() {
       cy.visit('http://localhost:3000/hackers')
     })
@@ -26,37 +26,6 @@ context('Contents and navigation of Hackers page', () => {
       })
     })
   
-    describe('Navigation bar is redirecting correctly', function() {
-      it('.should() - navigate to home page', function() {
-        cy.get('#navbar').contains('Koti').click()
-  
-        cy.location('pathname')
-          .should('not.include', 'hackers')
-  
-        cy.go('back')
-  
-        cy.location('pathname')
-          .should('include', 'hackers')    
-      })
-  
-      it('.should() - navigate to books page', function() {
-          cy.get('#navbar').contains('Kirjat').click()
-    
-          cy.location('pathname')
-            .should('include', 'books')
-          
-            cy.go('back')
-  
-          cy.location('pathname')
-            .should('not.include', 'books')
-  
-          cy.go('forward')
-  
-          cy.location('pathname')
-            .should('include', 'books')
-        })
-    })
-  
     describe('Filtering hackers works', function() {
       it('filter finds all matches', function() {
         cy.get('#filter-hackers-field')
@@ -67,7 +36,7 @@ context('Contents and navigation of Hackers page', () => {
           .should('have.length', 3)
         
         cy.get('html')
-          .should('contain', 'Java 1.6 vuotta')
+          .should('contain', 'Java 2.6 vuotta')
           .and('contain', 'Java 1.1 vuotta')
           .and('contain', 'Java 0.8 vuotta')
   
