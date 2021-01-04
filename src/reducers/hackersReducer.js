@@ -10,16 +10,16 @@ const hackersReducer = (state = [], action) => {
     return state
   }
 }
-  
+
 export const getHackers = () => {
   return async dispatch => {
     const hackers = await hackersService.getAll()
-  
+
     dispatch({
       type: 'GET_HACKERS',
       hackers
     })
   }
 }
-  
+
 export default hackersReducer

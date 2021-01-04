@@ -2,10 +2,10 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 
 const TeamPanel = ({ team, handleRemoveFromTeam }) => {
-    
+
   const teamList = () =>
     <ListGroup id='team-list' variant='flush' className='text-center'>
-      {team.map(employee =>      
+      {team.map(employee =>
         <ListGroup.Item action key={employee.id} onClick={() => handleRemoveFromTeam(employee)}>
           {[employee.firstname, employee.lastname].join(' ')}
         </ListGroup.Item>

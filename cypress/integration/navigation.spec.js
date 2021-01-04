@@ -4,16 +4,16 @@ context('Navigation of the application', () => {
     beforeEach(function() {
       cy.visit('http://localhost:3000')
     })
-    
+
     it('.should() - navigate to books page', function() {
       cy.get('#navbar').contains('Kirjat').click()
       cy.location('pathname').should('include', 'books')
       cy.go('back')
       cy.location('pathname').should('not.include', 'book')
       cy.go('forward')
-      cy.location('pathname').should('include', 'books')    
+      cy.location('pathname').should('include', 'books')
     })
-  
+
     it('.should() - navigate to hackers page', function() {
       cy.get('#navbar').contains('Hakkerit').click()
       cy.location('pathname').should('include', 'hackers')
@@ -21,7 +21,7 @@ context('Navigation of the application', () => {
       cy.location('pathname').should('not.include', 'hackers')
       cy.go('forward')
       cy.location('pathname').should('include', 'hackers')
-      })
+    })
   })
 
   describe('Navigation bar is redirecting correctly from hackers page', function() {
@@ -33,9 +33,9 @@ context('Navigation of the application', () => {
       cy.get('#navbar').contains('Koti').click()
       cy.location('pathname').should('not.include', 'hackers')
       cy.go('back')
-      cy.location('pathname').should('include', 'hackers')    
+      cy.location('pathname').should('include', 'hackers')
     })
-  
+
     it('.should() - navigate to books page', function() {
       cy.get('#navbar').contains('Kirjat').click()
       cy.location('pathname').should('include', 'books')
@@ -52,12 +52,12 @@ context('Navigation of the application', () => {
     })
 
     it('.should() - navigate to home page', function() {
-      cy.get('#navbar').contains('Koti').click()  
+      cy.get('#navbar').contains('Koti').click()
       cy.location('pathname').should('not.include', 'books')
       cy.go('back')
-      cy.location('pathname').should('include', 'books')    
+      cy.location('pathname').should('include', 'books')
     })
-  
+
     it('.should() - navigate to hackers page', function() {
       cy.get('#navbar').contains('Hakkerit').click()
       cy.location('pathname').should('include', 'hackers')

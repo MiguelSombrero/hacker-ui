@@ -11,7 +11,7 @@ const Review = ({ review }) =>
           <h1>{review.book.name}<Badge style={{ float: 'right' }} variant="warning">{review.rating}</Badge></h1>
         </Link>
       </Card.Title>
-      <Card.Subtitle className='text-muted mb-2 pb-2'>       
+      <Card.Subtitle className='text-muted mb-2 pb-2'>
         {review.book.authors}
       </Card.Subtitle>
       <Card.Text>

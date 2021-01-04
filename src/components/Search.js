@@ -7,7 +7,7 @@ const Search = (props) =>
       {...props}
       name='filter'
       type ='text'
-      >
+    >
     </Form.Control>
   </Form>
 

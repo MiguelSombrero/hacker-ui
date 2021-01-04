@@ -3,7 +3,7 @@ context('Contents of Books page', () => {
   beforeEach(function() {
     cy.visit('http://localhost:3000/books')
   })
-       
+
   describe('Books page is showing static contents', function() {
     it('.should() - make an assertion about front navbar', function() {
       cy.contains('Koti')
@@ -27,7 +27,7 @@ context('Contents of Books page', () => {
 
       cy.get('.list-group-item')
         .should('have.length', 3)
-      
+
       cy.get('html')
         .should('contain', 'Clean Code')
         .and('contain', 'Clean Architecture')
@@ -45,7 +45,7 @@ context('Contents of Books page', () => {
 
       cy.get('.list-group-item')
         .should('have.length', 3)
-      
+
       cy.get('html')
         .should('not.contain', 'Geenin Itsekkyys')
         .and('not.contain', 'Katriina')
@@ -54,10 +54,10 @@ context('Contents of Books page', () => {
     it('filter needs exact match', function() {
       cy.get('#filter-books-field')
         .type('katrina')
-  
+
       cy.get('.list-group-item')
         .should('have.length', 0)
-      
+
       cy.get('#filter-books-field')
         .clear()
 
@@ -66,7 +66,7 @@ context('Contents of Books page', () => {
 
       cy.get('#filter-books-field')
         .type('katriinaa')
-  
+
       cy.get('.list-group-item')
         .should('have.length', 0)
     })

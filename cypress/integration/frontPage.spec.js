@@ -3,7 +3,7 @@ context('Contents of Front page', () => {
   beforeEach(function() {
     cy.visit('http://localhost:3000')
   })
-       
+
   describe('Front page is showing static contents', function() {
     it('.should() - make an assertion about front navbar', function() {
       cy.contains('Koti')

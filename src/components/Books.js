@@ -18,40 +18,40 @@ const Books = () => {
 
   return (
     <>
-    <Row>
-      <Banner text='Eti kirja' />
-    </Row>
-    <Row>
-      <Col>
-        <Search
-          id='filter-books-field'
-          onChange={onChange}
-          placeholder='filter books ...'
-        />
-      </Col>
-    </Row>
-    <Row >
-      <Col>
-        <ListGroup variant='flush' className='text-center'>
-          {books.sort(bookByRating).map(book =>
-          <ListGroup.Item action key={book.id} >
-            <Row>
-              <Col>
-                <Link to={`/books/${book.id}`}>
-                  <h3>{book.name + ' (' + book.type.name + ')'}</h3>
-                </Link>    
-                <p>{book.authors}</p>
-              </Col>
-              <Col>
-                <h4>{book.rating + ' / 5'}</h4>
-                <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
-              </Col>
-            </Row>
-          </ListGroup.Item>
-          )}
-        </ListGroup>
-      </Col>
-    </Row>
+      <Row>
+        <Banner text='Eti kirja' />
+      </Row>
+      <Row>
+        <Col>
+          <Search
+            id='filter-books-field'
+            onChange={onChange}
+            placeholder='filter books ...'
+          />
+        </Col>
+      </Row>
+      <Row >
+        <Col>
+          <ListGroup variant='flush' className='text-center'>
+            {books.sort(bookByRating).map(book =>
+              <ListGroup.Item action key={book.id} >
+                <Row>
+                  <Col>
+                    <Link to={`/books/${book.id}`}>
+                      <h3>{book.name + ' (' + book.type.name + ')'}</h3>
+                    </Link>
+                    <p>{book.authors}</p>
+                  </Col>
+                  <Col>
+                    <h4>{book.rating + ' / 5'}</h4>
+                    <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            )}
+          </ListGroup>
+        </Col>
+      </Row>
     </>
   )
 }

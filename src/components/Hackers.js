@@ -30,28 +30,28 @@ const Hackers = () => {
   const handleRemoveFromTeam = hacker => {
     setTeam(team.filter(e => e.id !== hacker.id))
   }
-  
+
   return (
     <>
-    <Row>
-      <Banner text='Kassaa tiimi' />
-    </Row>
-    <Row>
-      <Col>
-        <Search id='filter-hackers-field' onChange={onChange} placeholder='java, mule, python ...' />
-      </Col>
-    </Row>
-    <Row>
-      <Col xs={12} md={4}>
-        <TeamPanel team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
-      </Col>
-      <Col xs={12} md={4}>
-        <HackerSearchResult hackers={hackersToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
-      </Col>
-      <Col xs={12} md={4}>
-        <KnowHowPanel team={team} />
-      </Col>
-    </Row>
+      <Row>
+        <Banner text='Kassaa tiimi' />
+      </Row>
+      <Row>
+        <Col>
+          <Search id='filter-hackers-field' onChange={onChange} placeholder='java, mule, python ...' />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12} md={4}>
+          <TeamPanel team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+        </Col>
+        <Col xs={12} md={4}>
+          <HackerSearchResult hackers={hackersToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
+        </Col>
+        <Col xs={12} md={4}>
+          <KnowHowPanel team={team} />
+        </Col>
+      </Row>
     </>
   )
 }
