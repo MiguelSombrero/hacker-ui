@@ -8,25 +8,25 @@ import { roundTo1Dec } from '../functions/numbers'
 const Hacker = () => {
   const { hackerId } = useParams();
 
-  const byId = employee =>
-    employee.id === Number(hackerId)
+  const byId = hacker =>
+    hacker.id === Number(hackerId)
 
-  const employee = useSelector(state =>
-    state.employees.find(byId)
+  const hacker = useSelector(state =>
+    state.hackers.find(byId)
   )
 
   return (
     <>
     <Row>
         <Col className='text-center' xs={12} md={{ span: 8, offset: 2 }}>
-          <h1>{employee.firstname + ' ' + employee.lastname}</h1>
+          <h1>{hacker.firstname + ' ' + hacker.lastname}</h1>
         </Col>
     </Row>
     <Row>
       <Col className='text-center' xs={12} md={3} >
         <h4>Osaaminen</h4>
         <ListGroup variant='flush'>
-          {employee.skills.sort(skillByKnowHow).map(skill =>
+          {hacker.skills.sort(skillByKnowHow).map(skill =>
           <ListGroup.Item key={skill.id} >
             {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
           </ListGroup.Item>

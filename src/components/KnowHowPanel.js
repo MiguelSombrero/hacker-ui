@@ -11,7 +11,7 @@ const KnowHowPanel = ({ team }) => {
       .reduce(skillByMaxKnowHow, {}))
     
   const knowHowList = () =>
-    <ListGroup variant='flush' className='text-center'>
+    <ListGroup id='knowhow-list' variant='flush' className='text-center'>
       {maxSkills.sort(skillByKnowHow).map(skill =>
         <ListGroup.Item action key={skill.id}>
           {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}

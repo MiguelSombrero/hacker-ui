@@ -4,23 +4,23 @@ import { skillByKnowHow, employeeBySumOfSkillKnowHows } from '../functions/sorti
 import { Link } from 'react-router-dom'
 import { roundTo1Dec } from '../functions/numbers'
 
-const HackerSearchResult = ({ employees, filterContains, handleAddToTeam }) =>
+const HackerSearchResult = ({ hackers, filterContains, handleAddToTeam }) =>
   <>
   <h2 className='mb-2 pb-2 text-center'>Hakutulokset</h2>
-  {employees.sort(employeeBySumOfSkillKnowHows).map(employee =>
-    <Card key={employee.id} className='mb-2' style={{ maxWidth: '25rem' }}>
+  {hackers.sort(employeeBySumOfSkillKnowHows).map(hacker =>
+    <Card key={hacker.id} className='mb-2' style={{ maxWidth: '25rem' }}>
       <Card.Header>
-        <Button style={{ float: 'right' }} variant='secondary' onClick={() => handleAddToTeam(employee)} >
+        <Button style={{ float: 'right' }} variant='secondary' onClick={() => handleAddToTeam(hacker)} >
           Valitse
         </Button>
         <Card.Title>
-          <Link to={`/hackers/${employee.id}`}>
-            <h3>{[employee.firstname, employee.lastname].join(' ')}</h3>
+          <Link to={`/hackers/${hacker.id}`}>
+            <h3>{[hacker.firstname, hacker.lastname].join(' ')}</h3>
           </Link> 
         </Card.Title>
       </Card.Header>
       <Card.Body>
-        {employee.skills.filter(filterContains).sort(skillByKnowHow).map(skill =>
+        {hacker.skills.filter(filterContains).sort(skillByKnowHow).map(skill =>
           <Card.Text key={skill.id}>
             {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
           </Card.Text>

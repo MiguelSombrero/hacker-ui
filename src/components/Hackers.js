@@ -12,16 +12,16 @@ const Hackers = () => {
   const [filters, onChange] = useFilters()
   const [team, setTeam] = useState([])
 
-  const employees = useSelector(state => state.employees)
+  const hackers = useSelector(state => state.hackers)
 
   const filterContains = skill => filters.length === 0 ||
     filters.some(filter => skill.name.toLowerCase() === filter.toLowerCase())
 
-  const hasAllOfSkills = employee =>
-    filters.every(filter => employee.skills.some(skill =>
+  const hasAllOfSkills = hacker =>
+    filters.every(filter => hacker.skills.some(skill =>
       skill.name.toLowerCase() === filter.toLowerCase()))
 
-  const employeesToShow = employees.filter(hasAllOfSkills)
+  const hackersToShow = hackers.filter(hasAllOfSkills)
 
   const handleAddToTeam = hacker => {
     setTeam([...new Set(team.concat(hacker))])
@@ -34,7 +34,7 @@ const Hackers = () => {
   return (
     <>
     <Row>
-      <Banner text='Rakenna tiimi' />
+      <Banner text='Kassaa tiimi' />
     </Row>
     <Row>
       <Col>
@@ -46,7 +46,7 @@ const Hackers = () => {
         <TeamPanel team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
       </Col>
       <Col xs={12} md={4}>
-        <HackerSearchResult employees={employeesToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
+        <HackerSearchResult hackers={hackersToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
       </Col>
       <Col xs={12} md={4}>
         <KnowHowPanel team={team} />

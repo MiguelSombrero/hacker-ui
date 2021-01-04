@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 import { BrowserRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getBooks } from './reducers/booksReducer'
-import { getEmployees } from './reducers/employeesReducer'
+import { getHackers } from './reducers/hackersReducer'
 import NavBar from './components/NavBar'
 import Router from './components/Router'
 import Footer from './components/Footer'
@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getBooks())
-    dispatch(getEmployees())
+    dispatch(getHackers())
     // eslint-disable-next-line
   }, [])
 
