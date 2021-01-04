@@ -11,7 +11,6 @@ For more details and documentation, see [Hacker API](https://github.com/MiguelSo
 To clone application
 
     git clone git@github.com:MiguelSombrero/hacker-ui.git
-    cd hacker-ui
 
 ### Install dependencies
 
@@ -27,20 +26,28 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 ### Integration tests
 
-Integrations tests is implemented with Cypress and requires backend to run in test mode. So to run integrations tests:
+Integrations tests is implemented with Cypress and requires backend to run (preferably in test mode). So to run integrations tests:
 
-Run [Hacker API](https://github.com/MiguelSombrero/hacker-api) in test mode
+#### Run Hacker API in test mode
 
+Clone, install and run [Hacker API](https://github.com/MiguelSombrero/hacker-api) in test mode
+
+    git clone git@github.com:MiguelSombrero/hacker-api.git
     cd hacker-api
+    mvn install
     SPRING_PROFILES_ACTIVE=test mvn spring-boot:run
 
-Run Hacker UI in development mode
+#### Run Hacker UI in development mode
 
     npm start
 
-Start Cypress and run tests
+#### Run Cypress
 
     npm run cypress:open
+
+### Run tests
+
+You can run integration tests one by one or all at once from opening Cypress window
 
 ### Create production build
 
