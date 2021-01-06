@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Badge } from 'react-bootstrap'
+import { Row, Col, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFilters } from '../hooks'
 import Search from './Search'
 import Banner from './Banner'
+import RatingBadge from './elements/RatingBadge'
 
 const Books = () => {
   const [filters, onChange] = useFilters()
@@ -42,7 +43,7 @@ const Books = () => {
                     <p>{book.authors}</p>
                   </Col>
                   <Col xs={12} md={4}>
-                    <h4><Badge variant="warning">{book.rating}</Badge></h4>
+                    <h4><RatingBadge rating={book.rating} /></h4>
                     <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
                   </Col>
                 </Row>
