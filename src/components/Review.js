@@ -1,7 +1,8 @@
 import React from 'react'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
 import { Card, Badge } from 'react-bootstrap'
+import LinkToHackersPage from './elements/LinkToHackersPage'
+import { Link } from 'react-router-dom'
 
 const Review = ({ review }) =>
   <Card className='mb-3'>
@@ -19,7 +20,8 @@ const Review = ({ review }) =>
       </Card.Text>
       <Card.Text>
         <small className="text-muted">
-          {moment(review.created).format('MMMM Do YYYY, hh:mm') + ' by ' + review.reviewer.firstname + ' ' + review.reviewer.lastname}
+          {moment(review.created).format('MMMM Do YYYY, hh:mm') + ' by '}
+          <LinkToHackersPage hacker={review.reviewer} />
         </small>
       </Card.Text>
     </Card.Body>

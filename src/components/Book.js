@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col, Badge, Card, CardColumns } from 'react-bootstrap'
 import { withRouter, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import LinkToHackersPage from './elements/LinkToHackersPage'
 
 const Book = () => {
   const { bookId } = useParams()
@@ -12,6 +13,10 @@ const Book = () => {
   const book = useSelector(state =>
     state.books.find(byId)
   )
+
+  if (!book) {
+    return null
+  }
 
   return (
     <>
@@ -31,7 +36,7 @@ const Book = () => {
               <Card key={review.id} >
                 <Card.Body>
                   <Card.Title>
-                    {review.reviewer.firstname + ' ' + review.reviewer.lastname}
+                    <LinkToHackersPage hacker={review.reviewer} />
                   </Card.Title>
                   <Card.Text>
                     {review.review}
