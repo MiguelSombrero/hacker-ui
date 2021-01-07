@@ -1,37 +1,17 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, Button } from 'react-bootstrap'
-import { reviewByCreated } from '../functions/sorting'
 import Review from './Review'
 import Banner from './Banner'
 
 const FrontPage = () => {
-  const [visible, setVisible] = useState(5)
+  const [visible, setVisible] = useState(10)
 
-  const books = useSelector(state => state.books)
+  const reviews = useSelector(state => state.reviews)
 
-  const reviewWithBook = (review, book) => {
-    return Object.assign(review,
-      { book:
-        {
-          id: book.id,
-          name: book.name,
-          authors: book.authors
-        }
-      }
-    )
-  }
+  const reviewsToShow = reviews.slice(0, visible)
 
-  const reviews = books
-    .map(book => book.reviews
-      .map(review => reviewWithBook(review, book)))
-    .flat()
-
-  const reviewsToShow = reviews
-    .sort(reviewByCreated)
-    .slice(0, visible)
-
-  const handleShowMore = () => setVisible(visible + 5)
+  const handleShowMore = () => setVisible(visible + 10)
 
   return (
     <>
@@ -40,7 +20,7 @@ const FrontPage = () => {
       </Row>
       <Row>
         <Col id='review-column' xs={12} md={{ span: 6, offset: 3 }} >
-          <h2 className='p-2'>Uusimmat kirja-arviot</h2>
+          <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>
           {reviewsToShow.map(review =>
             <Review key={review.id} review={review} />
           )}

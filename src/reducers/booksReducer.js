@@ -1,6 +1,6 @@
 import { Service } from '../service'
 
-const booksService = Service('/api/books')
+const booksService = Service('/api/studies/books')
 
 const booksReducer = (state = [], action) => {
   switch (action.type) {
