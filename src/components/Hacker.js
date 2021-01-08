@@ -8,12 +8,9 @@ import { roundTo1Dec } from '../functions/numbers'
 const Hacker = () => {
   const { hackerId } = useParams()
 
-  const byId = hacker =>
-    hacker.id === Number(hackerId)
+  const byId = hacker => hacker.id === Number(hackerId)
 
-  const hacker = useSelector(state =>
-    state.hackers.find(byId)
-  )
+  const hacker = useSelector(state => state.hackers.find(byId))
 
   const reviews = useSelector(state => state.reviews
     .filter(review => review.reviewer.id === Number(hackerId)))

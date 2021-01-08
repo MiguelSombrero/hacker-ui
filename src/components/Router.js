@@ -5,6 +5,8 @@ import Books from './Books'
 import Book from './Book'
 import Hackers from './Hackers'
 import Hacker from './Hacker'
+import Courses from './Courses'
+import Course from './Course'
 
 const Router = () =>
   <Switch>
@@ -13,6 +15,12 @@ const Router = () =>
     </Route>
     <Route path='/books'>
       <Books />
+    </Route>
+    <Route path='/courses/:courseId'>
+      <Course />
+    </Route>
+    <Route path='/courses'>
+      <Courses />
     </Route>
     <Route path='/hackers/:hackerId'>
       <Hacker />

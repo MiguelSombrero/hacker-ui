@@ -15,6 +15,9 @@ const NavBar = () =>
             <NavLink to='/books' >Kirjat</NavLink>
           </Nav.Link>
           <Nav.Link href='#' as='span'>
+            <NavLink to='/courses' >Kurssit</NavLink>
+          </Nav.Link>
+          <Nav.Link href='#' as='span'>
             <NavLink to='/hackers' >Hakkerit</NavLink>
           </Nav.Link>
         </Nav>
