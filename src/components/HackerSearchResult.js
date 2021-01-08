@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { skillByKnowHow, employeeBySumOfSkillKnowHows } from '../functions/sorting'
-import { Link } from 'react-router-dom'
 import { roundTo1Dec } from '../functions/numbers'
+import LinkToHackersPage from './elements/LinkToHackersPage'
 
 const HackerSearchResult = ({ hackers, filterContains, handleAddToTeam }) =>
   <>
@@ -14,9 +14,7 @@ const HackerSearchResult = ({ hackers, filterContains, handleAddToTeam }) =>
           Valitse
           </Button>
           <Card.Title>
-            <Link to={`/hackers/${hacker.id}`}>
-              <h3>{[hacker.firstname, hacker.lastname].join(' ')}</h3>
-            </Link>
+            <LinkToHackersPage hacker={hacker} />
           </Card.Title>
         </Card.Header>
         <Card.Body>

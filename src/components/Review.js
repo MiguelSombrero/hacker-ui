@@ -1,14 +1,16 @@
 import React from 'react'
 import moment from 'moment'
+import { Card } from 'react-bootstrap'
+import LinkToHackersPage from './elements/LinkToHackersPage'
 import { Link } from 'react-router-dom'
-import { Card, Badge } from 'react-bootstrap'
+import RatingBadge from './elements/RatingBadge'
 
 const Review = ({ review }) =>
   <Card className='mb-3'>
     <Card.Body>
       <Card.Title>
         <Link to={`/books/${review.book.id}`}>
-          <h1>{review.book.name}<Badge style={{ float: 'right' }} variant="warning">{review.rating}</Badge></h1>
+          <h1>{review.book.name}<span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span></h1>
         </Link>
       </Card.Title>
       <Card.Subtitle className='text-muted mb-2 pb-2'>
@@ -19,7 +21,8 @@ const Review = ({ review }) =>
       </Card.Text>
       <Card.Text>
         <small className="text-muted">
-          {moment(review.created).format('MMMM Do YYYY, hh:mm') + ' by ' + review.reviewer.firstname + ' ' + review.reviewer.lastname}
+          {moment(review.created).format('MMMM Do YYYY, hh:mm') + ' by '}
+          <LinkToHackersPage hacker={review.reviewer} />
         </small>
       </Card.Text>
     </Card.Body>

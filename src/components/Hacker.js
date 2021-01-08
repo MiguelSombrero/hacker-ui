@@ -15,18 +15,21 @@ const Hacker = () => {
     state.hackers.find(byId)
   )
 
+  const reviews = useSelector(state => state.reviews
+    .filter(review => review.reviewer.id === Number(hackerId)))
+
   return (
     <>
       <Row>
-        <Col className='text-center' xs={12} md={{ span: 8, offset: 2 }}>
-          <h1>{hacker.firstname + ' ' + hacker.lastname}</h1>
+        <Col className='text-center'>
+          <h1>{hacker && hacker.firstname + ' ' + hacker.lastname}</h1>
         </Col>
       </Row>
       <Row>
         <Col className='text-center' xs={12} md={3} >
           <h4>Osaaminen</h4>
           <ListGroup variant='flush'>
-            {hacker.skills.sort(skillByKnowHow).map(skill =>
+            {hacker && hacker.skills.sort(skillByKnowHow).map(skill =>
               <ListGroup.Item key={skill.id} >
                 {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
               </ListGroup.Item>
@@ -34,10 +37,16 @@ const Hacker = () => {
           </ListGroup>
         </Col>
         <Col xs={12} md={6} >
-
         </Col>
         <Col xs={12} md={3} >
-
+          <h4>Arvostelut</h4>
+          <ListGroup variant='flush'>
+            {reviews && reviews.map(review =>
+              <ListGroup.Item key={review.id} >
+                {review.book.name}
+              </ListGroup.Item>
+            )}
+          </ListGroup>
         </Col>
       </Row>
     </>

@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col, ListGroup } from 'react-bootstrap'
+import { Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFilters } from '../hooks'
-import { bookByRating } from '../functions/sorting'
 import Search from './Search'
 import Banner from './Banner'
+import RatingBadge from './elements/RatingBadge'
 
 const Books = () => {
   const [filters, onChange] = useFilters()
+  const [visible, setVisible] = useState(10)
 
-  const hasName = book =>
-    filters.every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
+  const hasName = book => filters
+    .every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const books = useSelector(state =>
-    state.books.filter(hasName))
+  const books = useSelector(state => state.books.filter(hasName))
+
+  const booksToShow = books
+    .slice(0, visible)
+
+  const handleShowMore = () => setVisible(visible + 10)
 
   return (
     <>
@@ -33,23 +38,30 @@ const Books = () => {
       <Row >
         <Col>
           <ListGroup variant='flush' className='text-center'>
-            {books.sort(bookByRating).map(book =>
+            {booksToShow.map(book =>
               <ListGroup.Item action key={book.id} >
                 <Row>
-                  <Col>
+                  <Col xs={12} md={8}>
                     <Link to={`/books/${book.id}`}>
                       <h3>{book.name + ' (' + book.type.name + ')'}</h3>
                     </Link>
                     <p>{book.authors}</p>
                   </Col>
-                  <Col>
-                    <h4>{book.rating + ' / 5'}</h4>
+                  <Col xs={12} md={4}>
+                    <h4><RatingBadge rating={book.rating} /></h4>
                     <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
                   </Col>
                 </Row>
               </ListGroup.Item>
             )}
           </ListGroup>
+        </Col>
+      </Row>
+      <Row>
+        <Col className='d-flex justify-content-center m-2'>
+          {books.length > visible &&
+          <Button id='show-more-button' onClick={handleShowMore}>Lataa lisää</Button>
+          }
         </Col>
       </Row>
     </>
