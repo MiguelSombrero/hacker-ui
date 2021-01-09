@@ -11,3 +11,12 @@ export const reviewByGreatestCreated = (current, next) =>
 export const skillBySumOfKnowHows = (current, next) =>
   current.knowHowMonths + next.knowHowMonths
 
+export const reviewByCreateDate = (array, review) => {
+  const date = review.created.substring(0, 7)
+
+  array[date] = (array[date])
+    ? { date: date, count: array[date].count + 1 }
+    : { date: date, count: 1 }
+
+  return array
+}
