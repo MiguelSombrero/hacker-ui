@@ -40,7 +40,7 @@ const Hacker = () => {
           <ListGroup variant='flush'>
             {reviews && reviews.map(review =>
               <ListGroup.Item key={review.id} >
-                {review.book.name}
+                {review.book && review.book.name} {review.course && review.course.name}
               </ListGroup.Item>
             )}
           </ListGroup>

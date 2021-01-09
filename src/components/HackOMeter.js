@@ -5,17 +5,25 @@ import moment from 'moment'
 const HackOMeter = ({ entries }) => {
 
   const setColor = (month) => {
-    if (month.count < 30) {
-      return '#4dff88'
-    } else if (month.count < 60) {
+    if (month.count < 20) {
+      return '#33ff77'
+    } else if (month.count < 40) {
       return '#1aff66'
-    } else if (month.count < 90) {
+    } else if (month.count < 60) {
+      return '#00ff55'
+    } else if (month.count < 80) {
       return '#00e64d'
+    } else if (month.count < 100) {
+      return '#00cc44'
     } else if (month.count < 120) {
       return '#00b33c'
+    } else if (month.count < 140) {
+      return '#009933'
+    } else if (month.count < 160) {
+      return '#00802b'
     }
 
-    return '#00802b'
+    return '#006622'
   }
 
   return (
