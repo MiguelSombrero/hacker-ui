@@ -3,6 +3,7 @@ import { Row, Col, Badge, Card, CardColumns } from 'react-bootstrap'
 import { withRouter, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import LinkToHackersPage from './elements/LinkToHackersPage'
+import moment from 'moment'
 
 const Course = () => {
   const { courseId } = useParams()
@@ -39,6 +40,11 @@ const Course = () => {
                   </Card.Text>
                   <Card.Text>
                     <small className="text-muted">{review.rating + ' / 5'}</small>
+                  </Card.Text>
+                  <Card.Text>
+                    <small className="text-muted">
+                      {moment(review.created).format('MMMM Do YYYY, hh:mm')}
+                    </small>
                   </Card.Text>
                 </Card.Body>
               </Card>
