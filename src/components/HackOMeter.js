@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Badge } from 'react-bootstrap'
 import moment from 'moment'
 
 const HackOMeter = ({ entries }) => {
@@ -30,8 +30,9 @@ const HackOMeter = ({ entries }) => {
     <ListGroup variant='flush'>
       {entries.map(month =>
         <ListGroup.Item key={month.date} style={{ backgroundColor: `${setColor(month)}` }}>
-          <h5>{moment(month.date).format('MMMM YYYY')}</h5>
-          <p>{month.count + ' arviota'}</p>
+          <h5>
+            {moment(month.date).format('MMMM YYYY')}<Badge variant='secondary' style={{ float: 'right' }}>{month.count}</Badge>
+          </h5>
         </ListGroup.Item>
       )}
     </ListGroup>
