@@ -5,7 +5,7 @@ import LinkToHackersPage from './elements/LinkToHackersPage'
 import { Link } from 'react-router-dom'
 import RatingBadge from './elements/RatingBadge'
 
-const Review = ({ review }) =>
+const BookReview = ({ review }) =>
   <Card className='mb-3'>
     <Card.Body>
       <Card.Title>
@@ -28,4 +28,4 @@ const Review = ({ review }) =>
     </Card.Body>
   </Card>
 
-export default Review
+export default BookReview

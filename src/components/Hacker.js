@@ -12,7 +12,7 @@ const Hacker = () => {
 
   const hacker = useSelector(state => state.hackers.find(byId))
 
-  const reviews = useSelector(state => state.reviews
+  const reviews = useSelector(state => state.studies.bookReviews
     .filter(review => review.reviewer.id === Number(hackerId)))
 
   return (

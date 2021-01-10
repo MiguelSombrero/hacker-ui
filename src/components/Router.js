@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import FrontPage from './FrontPage'
 import Books from './Books'
-import Book from './Book'
+import BookPage from './BookPage'
 import Hackers from './Hackers'
 import Hacker from './Hacker'
 import Courses from './Courses'
@@ -11,7 +11,7 @@ import CoursePage from './CoursePage'
 const Router = () =>
   <Switch>
     <Route path='/books/:bookId'>
-      <Book />
+      <BookPage />
     </Route>
     <Route path='/books'>
       <Books />
