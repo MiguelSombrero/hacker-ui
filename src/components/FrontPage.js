@@ -11,11 +11,11 @@ const FrontPage = () => {
 
   const handleShowMore = () => setVisible(visible + 10)
 
-  const reviews = useSelector(state => state.reviews)
+  const bookReviews = useSelector(state => state.studies.bookReviews)
 
-  const reviewsToShow = reviews.slice(0, visible)
+  const reviewsToShow = bookReviews.slice(0, visible)
 
-  const reviewCount = Object.values(reviews.reduce(reviewByCreateDate, {}))
+  const reviewCount = Object.values(bookReviews.reduce(reviewByCreateDate, {}))
 
   return (
     <>
@@ -36,7 +36,7 @@ const FrontPage = () => {
       </Row>
       <Row>
         <Col className='d-flex justify-content-center m-2'>
-          {reviews.length > visible &&
+          {bookReviews.length > visible &&
           <Button id='show-more-button' onClick={handleShowMore}>Lataa lisää</Button>
           }
         </Col>

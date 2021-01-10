@@ -14,7 +14,7 @@ const Books = () => {
   const hasName = book => filters
     .every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const books = useSelector(state => state.books.filter(hasName))
+  const books = useSelector(state => state.studies.books.filter(hasName))
 
   const booksToShow = books.slice(0, visible)
 

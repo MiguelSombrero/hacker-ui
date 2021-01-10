@@ -4,7 +4,7 @@ import { Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useFilters } from '../hooks'
 import { useDispatch } from 'react-redux'
-import { getCourses } from '../reducers/coursesReducer'
+import { getCourses } from '../reducers/studiesReducer'
 import Search from './Search'
 import Banner from './Banner'
 import RatingBadge from './elements/RatingBadge'
@@ -22,7 +22,7 @@ const Courses = () => {
   const hasName = course => filters
     .every(filter => course.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const courses = useSelector(state => state.courses.filter(hasName))
+  const courses = useSelector(state => state.studies.courses.filter(hasName))
 
   const coursesToShow = courses.slice(0, visible)
 

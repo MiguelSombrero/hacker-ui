@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { BrowserRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getBooks } from './reducers/booksReducer'
+import { getBooks } from './reducers/studiesReducer'
 import { getHackers } from './reducers/hackersReducer'
-import { getReviews } from './reducers/reviewsReducer'
+import { getBookReviews } from './reducers/studiesReducer'
 import { GoArrowUp } from 'react-icons/go'
 import { HashLink } from 'react-router-hash-link'
 import NavBar from './components/NavBar'
@@ -15,7 +15,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getReviews())
+    dispatch(getBookReviews())
     dispatch(getBooks())
     dispatch(getHackers())
     // eslint-disable-next-line
