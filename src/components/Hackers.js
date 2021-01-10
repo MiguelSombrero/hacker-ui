@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useFilters } from '../hooks'
 import { Row, Col } from 'react-bootstrap'
-import Search from './Search'
+import SearchBar from './SearchBar'
 import HackerSearchResult from './HackerSearchResult'
-import Banner from './Banner'
 import KnowHowPanel from './KnowHowPanel'
 import TeamPanel from './TeamPanel'
 
@@ -33,23 +32,20 @@ const Hackers = () => {
 
   return (
     <>
+      <SearchBar id='filter-hackers-field' onChange={onChange} placeholder='java, mule, python ...' />
       <Row>
-        <Banner text='Kassaa tiimi' />
-      </Row>
-      <Row>
-        <Col>
-          <Search id='filter-hackers-field' onChange={onChange} placeholder='java, mule, python ...' />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12} md={4}>
-          <TeamPanel team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
-        </Col>
         <Col xs={12} md={4}>
           <HackerSearchResult hackers={hackersToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
         </Col>
-        <Col xs={12} md={4}>
-          <KnowHowPanel team={team} />
+        <Col xs={12} md={8}>
+          <Row>
+            <Col xs={12} md={6}>
+              <TeamPanel team={team} handleRemoveFromTeam={handleRemoveFromTeam} />
+            </Col>
+            <Col xs={12} md={6}>
+              <KnowHowPanel team={team} />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>
