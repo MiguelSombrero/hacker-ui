@@ -6,7 +6,7 @@ import Book from './Book'
 import Hackers from './Hackers'
 import Hacker from './Hacker'
 import Courses from './Courses'
-import Course from './Course'
+import CoursePage from './CoursePage'
 
 const Router = () =>
   <Switch>
@@ -17,7 +17,7 @@ const Router = () =>
       <Books />
     </Route>
     <Route path='/courses/:courseId'>
-      <Course />
+      <CoursePage />
     </Route>
     <Route path='/courses'>
       <Courses />

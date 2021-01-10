@@ -3,15 +3,16 @@ import { Row, Col, Badge, Card, CardColumns } from 'react-bootstrap'
 import { withRouter, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import LinkToHackersPage from './elements/LinkToHackersPage'
+import moment from 'moment'
 
-const Book = () => {
-  const { bookId } = useParams()
+const CoursePage = () => {
+  const { courseId } = useParams()
 
-  const byId = book => book.id === Number(bookId)
+  const byId = course => course.id === Number(courseId)
 
-  const book = useSelector(state => state.studies.books.find(byId))
+  const course = useSelector(state => state.studies.courses.find(byId))
 
-  if (!book) {
+  if (!course) {
     return null
   }
 
@@ -19,9 +20,8 @@ const Book = () => {
     <>
       <Row className='m-2 p-2'>
         <Col className='text-center' xs={12} md={{ span: 8, offset: 2 }}>
-          <h1><Badge style={{ float: 'right' }} variant="warning">{book.rating}</Badge></h1>
-          <h1>{book.name}</h1>
-          <p>{book.authors}</p>
+          <h1><Badge style={{ float: 'right' }} variant="warning">{course.rating}</Badge></h1>
+          <h1>{course.name}</h1>
         </Col>
       </Row>
       <Row>
@@ -29,8 +29,8 @@ const Book = () => {
         </Col>
         <Col xs={12} md={8} >
           <CardColumns>
-            {book.reviews.map(review =>
-              <Card key={review.id} >
+            {course.reviews.map(review =>
+              <Card key={course.id} >
                 <Card.Body>
                   <Card.Title>
                     <LinkToHackersPage hacker={review.reviewer} />
@@ -40,6 +40,11 @@ const Book = () => {
                   </Card.Text>
                   <Card.Text>
                     <small className="text-muted">{review.rating + ' / 5'}</small>
+                  </Card.Text>
+                  <Card.Text>
+                    <small className="text-muted">
+                      {moment(review.created).format('MMMM Do YYYY, hh:mm')}
+                    </small>
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -54,4 +59,4 @@ const Book = () => {
   )
 }
 
-export default withRouter(Book)
+export default withRouter(CoursePage)

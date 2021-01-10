@@ -13,7 +13,7 @@ const FrontPage = () => {
 
   const bookReviews = useSelector(state => state.studies.bookReviews)
 
-  const reviewsToShow = bookReviews.slice(0, visible)
+  const bookReviewsToShow = bookReviews.slice(0, visible)
 
   const reviewCount = Object.values(bookReviews.reduce(reviewByCreateDate, {}))
 
@@ -23,15 +23,17 @@ const FrontPage = () => {
         <Banner text='Hakkeri Portaali' />
       </Row>
       <Row>
-        <Col className='text-center' xs={12} md={3} >
+        <Col className='text-center' xs={12} md={4} >
           <h2 className='p-2 text-center'>Hack &apos;O meter</h2>
           <HackOMeter entries={reviewCount}/>
         </Col>
-        <Col id='review-column' xs={12} md={6} >
-          <h2 className='p-2 text-center'>Uusimmat arviot</h2>
-          {reviewsToShow.map(review =>
+        <Col id='review-column' xs={12} md={4} >
+          <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>
+          {bookReviewsToShow.map(review =>
             <Review key={review.id} review={review} />
           )}
+        </Col>
+        <Col xs={12} md={4} >
         </Col>
       </Row>
       <Row>

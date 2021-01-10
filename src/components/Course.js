@@ -1,62 +1,22 @@
 import React from 'react'
-import { Row, Col, Badge, Card, CardColumns } from 'react-bootstrap'
-import { withRouter, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import LinkToHackersPage from './elements/LinkToHackersPage'
-import moment from 'moment'
+import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { Row, Col, ListGroup } from 'react-bootstrap'
+import RatingBadge from './elements/RatingBadge'
 
-const Course = () => {
-  const { courseId } = useParams()
-
-  const byId = course => course.id === Number(courseId)
-
-  const course = useSelector(state => state.courses.find(byId))
-
-  if (!course) {
-    return null
-  }
-
-  return (
-    <>
-      <Row className='m-2 p-2'>
-        <Col className='text-center' xs={12} md={{ span: 8, offset: 2 }}>
-          <h1><Badge style={{ float: 'right' }} variant="warning">{course.rating}</Badge></h1>
-          <h1>{course.name}</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col className='text-center' xs={12} md={2} >
-        </Col>
-        <Col xs={12} md={8} >
-          <CardColumns>
-            {course.reviews.map(review =>
-              <Card key={course.id} >
-                <Card.Body>
-                  <Card.Title>
-                    <LinkToHackersPage hacker={review.reviewer} />
-                  </Card.Title>
-                  <Card.Text>
-                    {review.review}
-                  </Card.Text>
-                  <Card.Text>
-                    <small className="text-muted">{review.rating + ' / 5'}</small>
-                  </Card.Text>
-                  <Card.Text>
-                    <small className="text-muted">
-                      {moment(review.created).format('MMMM Do YYYY, hh:mm')}
-                    </small>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            )}
-          </CardColumns>
-        </Col>
-        <Col xs={12} md={2} >
-          <p></p>
-        </Col>
-      </Row>
-    </>
-  )
-}
+const Course = ({ course }) =>
+  <ListGroup.Item action key={course.id} >
+    <Row>
+      <Col xs={12} md={8}>
+        <Link to={`/courses/${course.id}`}>
+          <h3>{course.name}</h3>
+        </Link>
+      </Col>
+      <Col xs={12} md={4}>
+        <h4><RatingBadge rating={course.rating} /></h4>
+        <p className='text-muted'>{course.reviews.length + ' arviota'}</p>
+      </Col>
+    </Row>
+  </ListGroup.Item>
 
 export default withRouter(Course)
