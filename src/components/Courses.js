@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { useFilters } from '../hooks'
-import Search from './Search'
-import Banner from './Banner'
+import SearchBar from './SearchBar'
 import CourseReview from './CourseReview'
 import Course from './Course'
 
@@ -26,18 +25,7 @@ const Courses = () => {
 
   return (
     <>
-      <Row>
-        <Banner text='Eti kurssi' />
-      </Row>
-      <Row>
-        <Col>
-          <Search
-            id='filter-courses-field'
-            onChange={onChange}
-            placeholder='etsi kursseja nimellä ...'
-          />
-        </Col>
-      </Row>
+      <SearchBar id='filter-courses-field' onChange={onChange} title='Etsi kursseja' placeholder='react, scrum mastery, ...' />
       <Row>
         <Col xs={12} md={4} >
           <h2 className='p-2 text-center'>Uusimmat kurssi-arviot</h2>

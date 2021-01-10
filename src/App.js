@@ -27,10 +27,10 @@ const App = () => {
       <BrowserRouter>
         <NavBar />
         <Router />
-        <Footer />
         <HashLink smooth to='#top'>
           <GoArrowUp style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: '9999' }} />
         </HashLink>
+        <Footer />
       </BrowserRouter>
     </Container>
   )

@@ -4,7 +4,6 @@ import { reviewByCreateDate } from '../functions/reducers'
 import { Row, Col } from 'react-bootstrap'
 import Banner from './Banner'
 import HackOMeter from './HackOMeter'
-import { Card } from 'react-bootstrap'
 import LinkToHackersPage from './elements/LinkToHackersPage'
 
 const FrontPage = () => {
@@ -27,15 +26,9 @@ const FrontPage = () => {
           <HackOMeter entries={reviewCount}/>
         </Col>
         <Col xs={12} md={6} >
-          <h3>Hakkerit joilla saattaa olla projektien päivitystarpeita</h3>
+          <h3>Tarkista projektit</h3>
           {hackers.map(hacker =>
-            <Card key={hacker.id} className='mb-2'>
-              <Card.Header>
-                <Card.Title>
-                  <LinkToHackersPage hacker={hacker} />
-                </Card.Title>
-              </Card.Header>
-            </Card>
+            <p key={hacker.id} ><LinkToHackersPage hacker={hacker} /></p>
           )}
         </Col>
       </Row>

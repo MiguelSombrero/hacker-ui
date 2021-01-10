@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { useFilters } from '../hooks'
-import Search from './Search'
-import Banner from './Banner'
+import SearchBar from './SearchBar'
 import BookReview from './BookReview'
 import Book from './Book'
 
@@ -26,18 +25,7 @@ const Books = () => {
 
   return (
     <>
-      <Row>
-        <Banner text='Eti kirja' />
-      </Row>
-      <Row>
-        <Col>
-          <Search
-            id='filter-books-field'
-            onChange={onChange}
-            placeholder='filter books ...'
-          />
-        </Col>
-      </Row>
+      <SearchBar id='filter-books-field' onChange={onChange} title='Etsi kirjoja' placeholder='scrum fieldbook, war and crime, ...' />
       <Row>
         <Col xs={12} md={4} >
           <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>

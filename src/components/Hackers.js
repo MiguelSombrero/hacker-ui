@@ -32,7 +32,7 @@ const Hackers = () => {
 
   return (
     <>
-      <SearchBar id='filter-hackers-field' onChange={onChange} placeholder='java, mule, python ...' />
+      <SearchBar id='filter-hackers-field' onChange={onChange} title='Etsi osaajia' placeholder='java, mule, python ...' />
       <Row>
         <Col xs={12} md={4}>
           <HackerSearchResult hackers={hackersToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
