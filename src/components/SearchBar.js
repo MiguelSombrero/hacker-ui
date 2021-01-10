@@ -9,7 +9,7 @@ const SearchBar = ({ title, ...props }) =>
         <Form.Control
           {...props}
           name='filter'
-          type ='text'
+          type ='search'
         >
         </Form.Control>
       </Form>

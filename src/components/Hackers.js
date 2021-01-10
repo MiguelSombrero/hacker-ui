@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useFilters } from '../hooks'
 import { Row, Col } from 'react-bootstrap'
+import { skillBySumOfKnowHows } from '../functions/reducers'
 import SearchBar from './SearchBar'
 import HackerSearchResult from './HackerSearchResult'
 import KnowHowPanel from './KnowHowPanel'
@@ -20,7 +21,16 @@ const Hackers = () => {
     filters.every(filter => hacker.skills.some(skill =>
       skill.name.toLowerCase() === filter.toLowerCase()))
 
-  const hackersToShow = hackers.filter(hasAllOfSkills)
+  const bySumOfFilteredSkills = (a, b) => {
+    const sumA = a.skills.filter(filterContains).reduce(skillBySumOfKnowHows, 0)
+    const sumB = b.skills.filter(filterContains).reduce(skillBySumOfKnowHows, 0)
+
+    return (sumA > sumB) ? -1 : 1
+  }
+
+  const hackersToShow = hackers
+    .filter(hasAllOfSkills)
+    .sort(bySumOfFilteredSkills)
 
   const handleAddToTeam = hacker => {
     setTeam([...new Set(team.concat(hacker))])
@@ -35,7 +45,9 @@ const Hackers = () => {
       <SearchBar id='filter-hackers-field' onChange={onChange} title='Etsi osaajia' placeholder='java, mule, python ...' />
       <Row>
         <Col xs={12} md={4}>
-          <HackerSearchResult hackers={hackersToShow} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
+          {hackersToShow.map(hacker =>
+            <HackerSearchResult key={hacker.id} hacker={hacker} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
+          )}
         </Col>
         <Col xs={12} md={8}>
           <Row>
