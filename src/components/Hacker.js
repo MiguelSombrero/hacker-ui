@@ -8,14 +8,11 @@ import { roundTo1Dec } from '../functions/numbers'
 const Hacker = () => {
   const { hackerId } = useParams()
 
-  const byId = hacker =>
-    hacker.id === Number(hackerId)
+  const byId = hacker => hacker.id === Number(hackerId)
 
-  const hacker = useSelector(state =>
-    state.hackers.find(byId)
-  )
+  const hacker = useSelector(state => state.hackers.find(byId))
 
-  const reviews = useSelector(state => state.reviews
+  const reviews = useSelector(state => state.studies.bookReviews
     .filter(review => review.reviewer.id === Number(hackerId)))
 
   return (
@@ -43,7 +40,7 @@ const Hacker = () => {
           <ListGroup variant='flush'>
             {reviews && reviews.map(review =>
               <ListGroup.Item key={review.id} >
-                {review.book.name}
+                {review.book && review.book.name} {review.course && review.course.name}
               </ListGroup.Item>
             )}
           </ListGroup>

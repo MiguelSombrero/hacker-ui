@@ -1,13 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import booksReducer from './reducers/booksReducer'
 import hackersReducer from './reducers/hackersReducer'
-import reviewsReducer from './reducers/reviewsReducer'
+import studiesReducer from './reducers/studiesReducer'
 
 const reducer = combineReducers({
-  books: booksReducer,
   hackers: hackersReducer,
-  reviews: reviewsReducer
+  studies: studiesReducer
 })
 
 const store = createStore(reducer, applyMiddleware(thunk))

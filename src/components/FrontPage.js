@@ -1,36 +1,35 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col, Button } from 'react-bootstrap'
-import Review from './Review'
+import { reviewByCreateDate } from '../functions/reducers'
+import { Row, Col } from 'react-bootstrap'
 import Banner from './Banner'
+import HackOMeter from './HackOMeter'
+import LinkToHackersPage from './elements/LinkToHackersPage'
 
 const FrontPage = () => {
-  const [visible, setVisible] = useState(10)
+  const bookReviews = useSelector(state => state.studies.bookReviews)
+  const reviewCount = Object.values(bookReviews.reduce(reviewByCreateDate, {}))
 
-  const reviews = useSelector(state => state.reviews)
-
-  const reviewsToShow = reviews.slice(0, visible)
-
-  const handleShowMore = () => setVisible(visible + 10)
+  const hackers = useSelector(state => state.hackers
+    .filter(hacker => hacker.skills.length === 0))
 
   return (
     <>
       <Row>
-        <Banner text='Hakkeri Portaali' />
+        <Banner text='Tervetuloa Hakkeri Portaaliin!' />
       </Row>
       <Row>
-        <Col id='review-column' xs={12} md={{ span: 6, offset: 3 }} >
-          <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>
-          {reviewsToShow.map(review =>
-            <Review key={review.id} review={review} />
-          )}
+        <Col xs={12} md={4} >
+          <h3 className='p-2 text-center'>Hack &apos;O meter</h3>
+          <h5 className='p-2 text-center'>Luetut kirjat</h5>
+          <p>Kuukausi<span style={{ float: 'right' }}>Arviot</span></p>
+          <HackOMeter entries={reviewCount}/>
         </Col>
-      </Row>
-      <Row>
-        <Col className='d-flex justify-content-center m-2'>
-          {reviews.length > visible &&
-          <Button id='show-more-button' onClick={handleShowMore}>Lataa lisää</Button>
-          }
+        <Col xs={12} md={6} >
+          <h3>Tarkista projektit</h3>
+          {hackers.map(hacker =>
+            <p key={hacker.id} ><LinkToHackersPage hacker={hacker} /></p>
+          )}
         </Col>
       </Row>
     </>

@@ -7,7 +7,12 @@ export const Service = (baseUrl) => {
     return res.data
   }
 
+  const getResource = async (path) => {
+    const res = await axios.get(`${baseUrl}/${path}`)
+    return res.data
+  }
+
   return  {
-    getAll
+    getAll, getResource
   }
 }

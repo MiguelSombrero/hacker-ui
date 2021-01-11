@@ -1,67 +1,59 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import { useFilters } from '../hooks'
-import Search from './Search'
-import Banner from './Banner'
-import RatingBadge from './elements/RatingBadge'
+import SearchBar from './SearchBar'
+import BookReview from './BookReview'
+import Book from './Book'
 
 const Books = () => {
   const [filters, onChange] = useFilters()
-  const [visible, setVisible] = useState(10)
+  const [visibleBooks, setVisibleBooks] = useState(10)
+  const [visibleBookReviews, setVisibleBookReviews] = useState(10)
 
   const hasName = book => filters
     .every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const books = useSelector(state => state.books.filter(hasName))
+  const books = useSelector(state => state.studies.books.filter(hasName))
+  const booksToShow = books.slice(0, visibleBooks)
 
-  const booksToShow = books
-    .slice(0, visible)
+  const bookReviews = useSelector(state => state.studies.bookReviews)
+  const bookReviewsToShow = bookReviews.slice(0, visibleBookReviews)
 
-  const handleShowMore = () => setVisible(visible + 10)
+  const handleShowMoreBooks = () => setVisibleBooks(visibleBooks + 10)
+  const handleShowMoreBookReviews = () => setVisibleBookReviews(visibleBookReviews + 10)
 
   return (
     <>
+      <SearchBar id='filter-books-field' onChange={onChange} title='Etsi kirjoja' placeholder='scrum fieldbook, war and crime, ...' />
       <Row>
-        <Banner text='Eti kirja' />
-      </Row>
-      <Row>
-        <Col>
-          <Search
-            id='filter-books-field'
-            onChange={onChange}
-            placeholder='filter books ...'
-          />
+        <Col xs={12} md={4} >
+          <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>
+          {bookReviewsToShow.map(review =>
+            <BookReview key={review.id} review={review} />
+          )}
+          <Row>
+            <Col className='d-flex justify-content-center m-2'>
+              {bookReviews.length > visibleBookReviews &&
+                <Button variant='secondary' onClick={handleShowMoreBookReviews}>Lataa lisää kirja-arvosteluja</Button>
+              }
+            </Col>
+          </Row>
         </Col>
-      </Row>
-      <Row >
-        <Col>
+        <Col xs={12} md={8}>
+          <h2 className='p-2 text-center'>Kirjat</h2>
           <ListGroup variant='flush' className='text-center'>
             {booksToShow.map(book =>
-              <ListGroup.Item action key={book.id} >
-                <Row>
-                  <Col xs={12} md={8}>
-                    <Link to={`/books/${book.id}`}>
-                      <h3>{book.name + ' (' + book.type.name + ')'}</h3>
-                    </Link>
-                    <p>{book.authors}</p>
-                  </Col>
-                  <Col xs={12} md={4}>
-                    <h4><RatingBadge rating={book.rating} /></h4>
-                    <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
+              <Book key={book.id} book={book} />
             )}
           </ListGroup>
-        </Col>
-      </Row>
-      <Row>
-        <Col className='d-flex justify-content-center m-2'>
-          {books.length > visible &&
-          <Button id='show-more-button' onClick={handleShowMore}>Lataa lisää</Button>
-          }
+          <Row>
+            <Col className='d-flex justify-content-center m-2'>
+              {books.length > visibleBooks &&
+                <Button variant='secondary' onClick={handleShowMoreBooks}>Lataa lisää kirjoje</Button>
+              }
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>
