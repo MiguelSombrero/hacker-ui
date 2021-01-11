@@ -10,7 +10,7 @@ const BookReview = ({ review }) =>
     <Card.Body>
       <Card.Title>
         <Link to={`/books/${review.book.id}`}>
-          <h3>{review.book.name}<span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span></h3>
+          <h4>{review.book.name}<span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span></h4>
         </Link>
       </Card.Title>
       <Card.Subtitle className='text-muted mb-2 pb-2'>

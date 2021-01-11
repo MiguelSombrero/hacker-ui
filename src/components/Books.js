@@ -50,7 +50,7 @@ const Books = () => {
           <Row>
             <Col className='d-flex justify-content-center m-2'>
               {books.length > visibleBooks &&
-                <Button variant='secondary' onClick={handleShowMoreBooks}>Lataa lisää kirjoje</Button>
+                <Button variant='secondary' onClick={handleShowMoreBooks}>Lataa lisää kirjoja</Button>
               }
             </Col>
           </Row>
