@@ -7,7 +7,7 @@ import store from './store'
 import { IconContext } from 'react-icons'
 
 ReactDOM.render(
-  <IconContext.Provider value={{ size: '2.5rem', color: 'rgb(52, 58, 64)' }}>
+  <IconContext.Provider value={{ size: '2rem', color: 'white' }}>
     <Provider store={store} >
       <App />
     </Provider>

@@ -9,11 +9,11 @@ const Course = ({ course }) =>
     <Row>
       <Col xs={12} md={8}>
         <Link to={`/courses/${course.id}`}>
-          <h3>{course.name}</h3>
+          <h4>{course.name}</h4>
         </Link>
       </Col>
       <Col xs={12} md={4}>
-        <h4><RatingBadge rating={course.rating} /></h4>
+        <h5><RatingBadge rating={course.rating} /></h5>
         <p className='text-muted'>{course.reviews.length + ' arviota'}</p>
       </Col>
     </Row>
