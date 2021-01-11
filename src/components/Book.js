@@ -9,12 +9,12 @@ const Book = ({ book }) =>
     <Row>
       <Col xs={12} md={8}>
         <Link to={`/books/${book.id}`}>
-          <h3>{book.name + ' (' + book.type.name + ')'}</h3>
+          <h4>{book.name + ' (' + book.type.name + ')'}</h4>
         </Link>
         <p>{book.authors}</p>
       </Col>
       <Col xs={12} md={4}>
-        <h4><RatingBadge rating={book.rating} /></h4>
+        <h5><RatingBadge rating={book.rating} /></h5>
         <p className='text-muted'>{book.reviews.length + ' arviota'}</p>
       </Col>
     </Row>
