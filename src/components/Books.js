@@ -27,7 +27,7 @@ const Books = () => {
     <>
       <SearchBar id='filter-books-field' onChange={onChange} title='Etsi kirjoja' placeholder='scrum fieldbook, war and crime, ...' />
       <Row>
-        <Col xs={12} md={4} >
+        <Col id='book-reviews-column' xs={12} md={4} >
           <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>
           {bookReviewsToShow.map(review =>
             <BookReview key={review.id} review={review} />
@@ -40,7 +40,7 @@ const Books = () => {
             </Col>
           </Row>
         </Col>
-        <Col xs={12} md={8}>
+        <Col id='books-column' xs={12} md={8}>
           <h2 className='p-2 text-center'>Kirjat</h2>
           <ListGroup variant='flush' className='text-center'>
             {booksToShow.map(book =>
@@ -50,7 +50,11 @@ const Books = () => {
           <Row>
             <Col className='d-flex justify-content-center m-2'>
               {books.length > visibleBooks &&
-                <Button variant='secondary' onClick={handleShowMoreBooks}>Lataa lisää kirjoja</Button>
+                <Button
+                  id='show-more-books-button'
+                  variant='secondary'
+                  onClick={handleShowMoreBooks}
+                >Lataa lisää kirjoja</Button>
               }
             </Col>
           </Row>

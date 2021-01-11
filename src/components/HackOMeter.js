@@ -27,7 +27,7 @@ const HackOMeter = ({ entries }) => {
   }
 
   return (
-    <ListGroup variant='flush'>
+    <ListGroup id='hack-o-meter' variant='flush'>
       {entries.map(month =>
         <ListGroup.Item key={month.date} style={{ backgroundColor: `${setColor(month)}` }}>
           <h5>
