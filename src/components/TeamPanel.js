@@ -14,7 +14,7 @@ const TeamPanel = ({ team, handleRemoveFromTeam }) => {
 
   return (
     <>
-      <h2 className='mb-2 pb-2 text-center'>Tiimissä</h2>
+      <h2 className='mb-2 pb-2 text-center'>Tiimissä<span style={{ color: 'green' }}>{' ' + team.length + ' '}</span> hakkeria</h2>
 
       {team.length > 0
         ? teamList()
