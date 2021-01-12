@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import { skillByKnowHow } from '../functions/sorting'
 import { roundTo1Dec } from '../functions/numbers'
 import Banner from './Banner'
+import ReviewsAccordion from './ReviewsAccordion'
+import ProjectsTable from './ProjectsTable'
 
 const Hacker = () => {
   const { hackerId } = useParams()
@@ -24,10 +26,12 @@ const Hacker = () => {
   return (
     <>
       <Row>
-        <Banner text={[hacker.firstname, hacker.lastname].join(' ')} />
+        <Banner text={[hacker.firstName, hacker.lastName].join(' ')} />
       </Row>
       <Row>
         <Col xs={12} md={3} >
+          <h4 className='text-center'>Arvostelut</h4>
+          <ReviewsAccordion bookReviews={bookReviews} courseReviews={courseReviews} />
           <h4 className='text-center'>Osaaminen</h4>
           <ListGroup variant='flush'>
             {hacker && hacker.skills.sort(skillByKnowHow).map(skill =>
@@ -37,25 +41,9 @@ const Hacker = () => {
             )}
           </ListGroup>
         </Col>
-        <Col xs={12} md={3} >
-          <h4>Kurssi-arvostelut</h4>
-          <ListGroup variant='flush'>
-            {courseReviews && courseReviews.map(review =>
-              <ListGroup.Item key={review.id} >
-                {review.course.name}
-              </ListGroup.Item>
-            )}
-          </ListGroup>
-        </Col>
-        <Col xs={12} md={3} >
-          <h4>Kirja-arvostelut</h4>
-          <ListGroup variant='flush'>
-            {bookReviews && bookReviews.map(review =>
-              <ListGroup.Item key={review.id} >
-                {review.book.name}
-              </ListGroup.Item>
-            )}
-          </ListGroup>
+        <Col xs={12} md={9} >
+          <h4 className='text-center'>Projektit</h4>
+          <ProjectsTable projects={hacker.projects} />
         </Col>
       </Row>
     </>
