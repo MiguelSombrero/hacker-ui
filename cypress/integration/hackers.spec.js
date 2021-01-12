@@ -63,7 +63,7 @@ context('Contents of Hackers page', () => {
         .type('java, mule, xml')
 
       cy.get('.card')
-        .should('have.length', 2)
+        .should('have.length', 6)
 
       cy.get('html')
         .should('contain', 'Miika Somero')
