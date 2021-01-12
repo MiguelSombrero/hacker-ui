@@ -38,7 +38,7 @@ context('Contents of Hackers page', () => {
 
       cy.get('.card').eq(0)
         .should('contain', '8.2 vuotta')
-        
+
       cy.get('.card').eq(1)
         .should('contain', '4.8 vuotta')
 
