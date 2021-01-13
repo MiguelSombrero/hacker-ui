@@ -1,35 +1,48 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { reviewByCreateDate } from '../functions/reducers'
-import { Row, Col } from 'react-bootstrap'
+import { contentByReviewsCount } from '../functions/sorting'
+import { Row, Col, ListGroup } from 'react-bootstrap'
 import Banner from './Banner'
 import HackOMeter from './HackOMeter'
-import LinkToHackersPage from './elements/LinkToHackersPage'
+import ListItem from './elements/ListItem'
 
 const FrontPage = () => {
   const bookReviews = useSelector(state => state.studies.bookReviews)
-  const reviewCount = Object.values(bookReviews.reduce(reviewByCreateDate, {}))
+  const courseReviews = useSelector(state => state.studies.courseReviews)
+  const books = useSelector(state => state.studies.books)
+  const courses = useSelector(state => state.studies.courses)
 
-  const hackers = useSelector(state => state.hackers
-    .filter(hacker => hacker.skills.length === 0))
+  const reviewCount = Object.values(bookReviews
+    .concat(courseReviews)
+    .reduce(reviewByCreateDate, {})
+  )
 
   return (
     <>
       <Row>
-        <Banner text='Tervetuloa Hakkeri Portaaliin!' />
+        <Banner text='Hakkeri Portaali' />
       </Row>
       <Row>
         <Col xs={12} md={4} >
-          <h3 className='p-2 text-center'>Hack &apos;O meter</h3>
-          <h5 className='p-2 text-center'>Luetut kirjat</h5>
-          <p>Kuukausi<span style={{ float: 'right' }}>Arviot</span></p>
+          <h3 className='p-3'>Kuukauden arvostelut</h3>
           <HackOMeter entries={reviewCount}/>
         </Col>
-        <Col xs={12} md={6} >
-          <h3>Tarkista projektit</h3>
-          {hackers.map(hacker =>
-            <p key={hacker.id} ><LinkToHackersPage hacker={hacker} /></p>
-          )}
+        <Col xs={12} md={4} >
+          <h3 className='p-3' >Luetuimmat kirjat</h3>
+          <ListGroup id='books-list' variant='flush'>
+            {books.sort(contentByReviewsCount).map(book =>
+              <ListItem key={book.id} item={book} link={`/books/${book.id}`} />
+            )}
+          </ListGroup>
+        </Col>
+        <Col xs={12} md={4} >
+          <h3 className='p-3' >Käydyimmät kurssit</h3>
+          <ListGroup id='courses-list' variant='flush'>
+            {courses.sort(contentByReviewsCount).map(course =>
+              <ListItem key={course.id} item={course} link={`/courses/${course.id}`} />
+            )}
+          </ListGroup>
         </Col>
       </Row>
     </>

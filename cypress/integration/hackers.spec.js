@@ -1,44 +1,51 @@
 
 context('Contents of Hackers page', () => {
-  beforeEach(function() {
+  before(function() {
     cy.visit('http://localhost:3000/hackers')
+    cy.wait(2000)
+  })
+
+  beforeEach(function() {
+    cy.get('#filter-hackers-field')
+      .clear()
   })
 
   describe('Hackers page is showing static contents', function() {
     it('.should() - make an assertion about front navbar', function() {
       cy.contains('Koti')
       cy.contains('Kirjat')
+      cy.contains('Kurssit')
       cy.contains('Hakkerit')
+      cy.contains('Etsi osaajia')
     })
 
     it('.should() - make an assertion about titles', function() {
-      cy.contains('Kassaa tiimi')
-      cy.contains('Hakutulokset')
-      cy.contains('Tiimissä')
+      cy.contains('Tiimissä 0 hakkeria')
       cy.contains('Tiimin osaaminen')
     })
   })
 
   describe('Hackers page is showing hackers correctly', function() {
-    it('.should() - show more than 5 hackers at start up', function() {
+    it('.should() - show more than 30 hackers at start up', function() {
       cy.get('.card')
-        .should('have.length.at.least', 5)
+        .should('have.length.at.least', 30)
     })
   })
 
   describe('Filtering hackers works', function() {
     it('filter finds all matches', function() {
       cy.get('#filter-hackers-field')
-        .type('java')
-        .should('have.value', 'java')
+        .type('python')
+        .should('have.value', 'python')
 
       cy.get('.card')
-        .should('have.length', 3)
+        .should('have.length', 4)
 
-      cy.get('html')
-        .should('contain', 'Java 2.6 vuotta')
-        .and('contain', 'Java 1.1 vuotta')
-        .and('contain', 'Java 0.8 vuotta')
+      cy.get('.card').eq(0)
+        .should('contain', '8.2 vuotta')
+
+      cy.get('.card').eq(1)
+        .should('contain', '4.8 vuotta')
 
       cy.get('#filter-hackers-field')
         .clear()
@@ -46,17 +53,14 @@ context('Contents of Hackers page', () => {
     })
 
     it('filter eliminates non-matches', function() {
-      cy.contains('Kari Somero')
+      cy.contains('Miika Somero')
 
       cy.get('#filter-hackers-field')
         .type('python')
 
-      cy.get('.card')
-        .should('have.length', 1)
-
       cy.get('html')
-        .should('not.contain', 'Kari Somero')
-        .and('not.contain', 'Liisa Ahtinen')
+        .should('not.contain', 'Miika Somero')
+        .and('contain', 'Tuomas Pesola')
     })
 
     it('filter needs exact match', function() {
@@ -64,10 +68,10 @@ context('Contents of Hackers page', () => {
         .type('java, mule, xml')
 
       cy.get('.card')
-        .should('have.length', 1)
+        .should('have.length', 6)
 
       cy.get('html')
-        .should('contain', 'Jukka Jukkanen')
+        .should('contain', 'Miika Somero')
         .and('contain', 'Xml')
         .and('contain', 'Java')
         .and('contain', 'Mule')
@@ -76,7 +80,7 @@ context('Contents of Hackers page', () => {
         .clear()
 
       cy.get('.card')
-        .should('have.length.at.least', 5)
+        .should('have.length.at.least', 30)
 
       cy.get('#filter-hackers-field')
         .type('java, mulle, xml')
@@ -97,8 +101,8 @@ context('Contents of Hackers page', () => {
 
       cy.get('html').should('not.contain', 'Ei näy kettään')
       cy.get('html').should('not.contain', 'Ei ossaa mittään')
-      cy.get('#knowhow-list').should('contain', 'Sql 2.6 vuotta')
-      cy.get('#team-list').should('contain', 'Miika Somero')
+      cy.get('#knowhow-list').should('contain', 'Maven 31 vuotta')
+      cy.get('#team-list').should('contain', 'Timo Sorsamaki')
     })
 
     it('.should() - add two hackers to team when pressed add button', function() {
@@ -107,10 +111,10 @@ context('Contents of Hackers page', () => {
 
       cy.get('html').should('not.contain', 'Ei näy kettään')
       cy.get('html').should('not.contain', 'Ei ossaa mittään')
-      cy.get('#knowhow-list').should('contain', 'Sql 2.6 vuotta')
-      cy.get('#knowhow-list').should('contain', 'Word 2.3 vuotta')
-      cy.get('#team-list').should('contain', 'Miika Somero')
-      cy.get('#team-list').should('contain', 'Kari Somero')
+      cy.get('#knowhow-list').should('contain', 'Maven 31 vuotta')
+      cy.get('#team-list').should('contain', 'Timo Sorsamaki')
+      cy.get('#knowhow-list').should('contain', 'Sql 20 vuotta')
+      cy.get('#team-list').should('contain', 'Heikki Uusitalo')
     })
   })
 })

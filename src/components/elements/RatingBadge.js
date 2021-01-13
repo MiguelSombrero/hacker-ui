@@ -3,23 +3,23 @@ import { Badge } from 'react-bootstrap'
 
 const RatingBadge = ({ rating }) => {
 
-  const setVariant = () => {
+  const setBackgroundColor = () => {
     switch(Math.round(rating)) {
     case 2:
-      return 'danger'
+      return '#dd7711'
     case 3:
-      return 'warning'
+      return '#dddd00'
     case 4:
-      return 'warning'
+      return '#77dd11'
     case 5:
-      return 'success'
+      return '#00dd44'
     default:
-      return 'danger'
+      return 'red'
     }
   }
 
   return (
-    <Badge variant={setVariant()}>{rating}</Badge>
+    <Badge style={{ backgroundColor: setBackgroundColor() }}>{rating}</Badge>
   )
 }
 

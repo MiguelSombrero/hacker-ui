@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { useFilters } from '../hooks'
+import { contentByRating } from '../functions/sorting'
 import SearchBar from './SearchBar'
 import BookReview from './BookReview'
 import Book from './Book'
@@ -14,7 +15,11 @@ const Books = () => {
   const hasName = book => filters
     .every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const books = useSelector(state => state.studies.books.filter(hasName))
+  const books = useSelector(state => state.studies.books
+    .filter(hasName)
+    .sort(contentByRating)
+  )
+
   const booksToShow = books.slice(0, visibleBooks)
 
   const bookReviews = useSelector(state => state.studies.bookReviews)
@@ -27,7 +32,7 @@ const Books = () => {
     <>
       <SearchBar id='filter-books-field' onChange={onChange} title='Etsi kirjoja' placeholder='scrum fieldbook, war and crime, ...' />
       <Row>
-        <Col xs={12} md={4} >
+        <Col id='book-reviews-column' xs={12} md={4} >
           <h2 className='p-2 text-center'>Uusimmat kirja-arviot</h2>
           {bookReviewsToShow.map(review =>
             <BookReview key={review.id} review={review} />
@@ -40,7 +45,7 @@ const Books = () => {
             </Col>
           </Row>
         </Col>
-        <Col xs={12} md={8}>
+        <Col id='books-column' xs={12} md={8}>
           <h2 className='p-2 text-center'>Kirjat</h2>
           <ListGroup variant='flush' className='text-center'>
             {booksToShow.map(book =>
@@ -50,7 +55,11 @@ const Books = () => {
           <Row>
             <Col className='d-flex justify-content-center m-2'>
               {books.length > visibleBooks &&
-                <Button variant='secondary' onClick={handleShowMoreBooks}>Lataa lisää kirjoje</Button>
+                <Button
+                  id='show-more-books-button'
+                  variant='secondary'
+                  onClick={handleShowMoreBooks}
+                >Lataa lisää kirjoja</Button>
               }
             </Col>
           </Row>

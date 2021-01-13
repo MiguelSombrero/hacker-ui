@@ -30,7 +30,7 @@ const CoursePage = () => {
         <Col xs={12} md={8} >
           <CardColumns>
             {course.reviews.map(review =>
-              <Card key={course.id} >
+              <Card key={review.id} >
                 <Card.Body>
                   <Card.Title>
                     <LinkToHackersPage hacker={review.reviewer} />

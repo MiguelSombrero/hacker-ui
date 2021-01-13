@@ -7,14 +7,14 @@ const TeamPanel = ({ team, handleRemoveFromTeam }) => {
     <ListGroup id='team-list' variant='flush' className='text-center'>
       {team.map(employee =>
         <ListGroup.Item action key={employee.id} onClick={() => handleRemoveFromTeam(employee)}>
-          {[employee.firstname, employee.lastname].join(' ')}
+          {[employee.firstName, employee.lastName].join(' ')}
         </ListGroup.Item>
       )}
     </ListGroup>
 
   return (
     <>
-      <h2 className='mb-2 pb-2 text-center'>Tiimissä</h2>
+      <h2 className='mb-2 pb-2 text-center'>Tiimissä<span style={{ color: 'green' }}>{' ' + team.length + ' '}</span> hakkeria</h2>
 
       {team.length > 0
         ? teamList()
