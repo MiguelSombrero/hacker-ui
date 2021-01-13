@@ -3,7 +3,7 @@ import { Badge } from 'react-bootstrap'
 
 const RatingBadge = ({ rating }) => {
 
-  const setVariant = () => {
+  const setBackgroundColor = () => {
     switch(Math.round(rating)) {
     case 2:
       return '#dd7711'
@@ -19,7 +19,7 @@ const RatingBadge = ({ rating }) => {
   }
 
   return (
-    <Badge style={{ backgroundColor: setVariant() }}>{rating}</Badge>
+    <Badge style={{ backgroundColor: setBackgroundColor() }}>{rating}</Badge>
   )
 }
 

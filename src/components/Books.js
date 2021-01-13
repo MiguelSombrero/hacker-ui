@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { useFilters } from '../hooks'
+import { contentByRating } from '../functions/sorting'
 import SearchBar from './SearchBar'
 import BookReview from './BookReview'
 import Book from './Book'
@@ -14,7 +15,11 @@ const Books = () => {
   const hasName = book => filters
     .every(filter => book.name.toLowerCase().includes(filter.toLowerCase()))
 
-  const books = useSelector(state => state.studies.books.filter(hasName))
+  const books = useSelector(state => state.studies.books
+    .filter(hasName)
+    .sort(contentByRating)
+  )
+
   const booksToShow = books.slice(0, visibleBooks)
 
   const bookReviews = useSelector(state => state.studies.bookReviews)
