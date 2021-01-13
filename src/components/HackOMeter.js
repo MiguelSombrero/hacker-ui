@@ -30,9 +30,8 @@ const HackOMeter = ({ entries }) => {
     <ListGroup id='hack-o-meter' variant='flush'>
       {entries.map(month =>
         <ListGroup.Item key={month.date} style={{ backgroundColor: `${setColor(month)}` }}>
-          <h5>
-            {moment(month.date).format('MMMM YYYY')}<Badge variant='secondary' style={{ float: 'right' }}>{month.count}</Badge>
-          </h5>
+          <h5>{moment(month.date).format('MMMM YYYY')}</h5>
+          <p><span style={{ float: 'right' }}><Badge variant='secondary'>{month.count}</Badge></span></p>
         </ListGroup.Item>
       )}
     </ListGroup>
