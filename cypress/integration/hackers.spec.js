@@ -1,8 +1,13 @@
 
 context('Contents of Hackers page', () => {
-  beforeEach(function() {
+  before(function() {
     cy.visit('http://localhost:3000/hackers')
     cy.wait(2000)
+  })
+
+  beforeEach(function() {
+    cy.get('#filter-hackers-field')
+      .clear()
   })
 
   describe('Hackers page is showing static contents', function() {

@@ -2,6 +2,7 @@
 context('Contents of Books page', () => {
   beforeEach(function() {
     cy.visit('http://localhost:3000/books')
+    cy.get('#filter-books-field').clear()
     cy.wait(4000)
   })
 

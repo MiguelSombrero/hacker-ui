@@ -1,7 +1,7 @@
 
 context('Navigation of the application', () => {
   describe('Navigation bar is redirecting correctly from home', function() {
-    beforeEach(function() {
+    before(function() {
       cy.visit('http://localhost:3000')
     })
 
@@ -34,7 +34,7 @@ context('Navigation of the application', () => {
   })
 
   describe('Navigation bar is redirecting correctly from hackers page', function() {
-    beforeEach(function() {
+    before(function() {
       cy.visit('http://localhost:3000/hackers')
     })
 
@@ -65,7 +65,7 @@ context('Navigation of the application', () => {
   })
 
   describe('Navigation bar is redirecting correctly from books page', function() {
-    beforeEach(function() {
+    before(function() {
       cy.visit('http://localhost:3000/books')
     })
 
@@ -96,7 +96,7 @@ context('Navigation of the application', () => {
   })
 
   describe('Navigation bar is redirecting correctly from courses page', function() {
-    beforeEach(function() {
+    before(function() {
       cy.visit('http://localhost:3000/courses')
     })
 
