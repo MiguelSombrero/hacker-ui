@@ -6,21 +6,21 @@ const HackOMeter = ({ entries }) => {
 
   const setColor = (month) => {
     if (month.count < 20) {
-      return '#33ff77'
+      return '#ffebe6'
     } else if (month.count < 40) {
-      return '#1aff66'
+      return '#ffd6cc'
     } else if (month.count < 60) {
-      return '#00ff55'
+      return '#fff5e6'
     } else if (month.count < 80) {
-      return '#00e64d'
+      return '#ffebcc'
     } else if (month.count < 100) {
-      return '#00cc44'
+      return '#ffffe6'
     } else if (month.count < 120) {
-      return '#00b33c'
+      return '#ffffcc'
     } else if (month.count < 140) {
-      return '#009933'
+      return '#e6ffee'
     } else if (month.count < 160) {
-      return '#00802b'
+      return '#ccffdd'
     }
 
     return '#006622'
@@ -30,8 +30,9 @@ const HackOMeter = ({ entries }) => {
     <ListGroup id='hack-o-meter' variant='flush'>
       {entries.map(month =>
         <ListGroup.Item key={month.date} style={{ backgroundColor: `${setColor(month)}` }}>
-          <h5>{moment(month.date).format('MMMM YYYY')}</h5>
-          <p><span style={{ float: 'right' }}><Badge variant='secondary'>{month.count}</Badge></span></p>
+          <h5>
+            {moment(month.date).format('MMMM YYYY')}<span style={{ float: 'right' }}><Badge variant='secondary'>{month.count}</Badge></span>
+          </h5>
         </ListGroup.Item>
       )}
     </ListGroup>
