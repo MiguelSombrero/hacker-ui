@@ -4,14 +4,9 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
 
-const java10 = {
+const java1 = {
   name: 'Java',
-  knowHowMonths: 10
-}
-
-const java9 = {
-  name: 'Java',
-  knowHowMonths: 9
+  knowHowMonths: 1
 }
 
 const java2 = {
@@ -19,34 +14,60 @@ const java2 = {
   knowHowMonths: 2
 }
 
-const python35 = {
-  name: 'Python',
-  knowHowMonths: 35
+const java3 = {
+  name: 'Java',
+  knowHowMonths: 3
 }
 
-const python7 = {
+const python4 = {
   name: 'Python',
-  knowHowMonths: 7
+  knowHowMonths: 4
 }
 
-const mule12 = {
+const python5 = {
+  name: 'Python',
+  knowHowMonths: 5
+}
+
+const mule10 = {
   name: 'Mule',
-  knowHowMonths: 12
+  knowHowMonths: 10
 }
 
-const employee37 = {
+const employee6 = {
   firstName: 'Miika',
   lastName: 'Somero',
-  skills: [python35, java2]
+  skills: [java1, java2, java3]
 }
 
-const employee28 = {
+const employee9 = {
   firstName: 'Testi',
   lastName: 'Testinen',
-  skills: [java10, java9, java2, python7]
+  skills: [python4, python5]
+}
+
+const book50 = {
+  name: 'The Selfish Gene',
+  rating: 5.0
+}
+
+const book47 = {
+  name: 'The Scrum Fieldbook',
+  rating: 4.7
+}
+
+const book40 = {
+  name: 'Katrina',
+  rating: 4.0
+}
+
+const book29 = {
+  name: 'Apocalypse Now',
+  rating: 2.9
 }
 
 export default {
- java10, java2, java9, python35, python7, mule12,
- employee37, employee28
+  java1, java2, java3, python4, python5, mule10,
+  employee6, employee9,
+  book29, book40, book47, book50
 }
