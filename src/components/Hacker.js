@@ -4,46 +4,46 @@ import { Row, Col, ListGroup } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { skillByKnowHow } from '../functions/sorting'
 import { roundTo1Dec } from '../functions/numbers'
+import Banner from './Banner'
+import ReviewsAccordion from './ReviewsAccordion'
+import ProjectsTable from './ProjectsTable'
 
 const Hacker = () => {
   const { hackerId } = useParams()
 
-  const byId = hacker => hacker.id === Number(hackerId)
+  const hackerById = hacker => hacker.id === Number(hackerId)
 
-  const hacker = useSelector(state => state.hackers.find(byId))
+  const reviewById = review => review.reviewer.id === Number(hackerId)
 
-  const reviews = useSelector(state => state.studies.bookReviews
-    .filter(review => review.reviewer.id === Number(hackerId)))
+  const hacker = useSelector(state => state.hackers.find(hackerById))
+
+  const bookReviews = useSelector(state => state.studies.bookReviews
+    .filter(reviewById))
+
+  const courseReviews = useSelector(state => state.studies.courseReviews
+    .filter(reviewById))
 
   return (
     <>
       <Row>
-        <Col className='text-center'>
-          <h1>{hacker && hacker.firstname + ' ' + hacker.lastname}</h1>
-        </Col>
+        <Banner text={[hacker.firstName, hacker.lastName].join(' ')} />
       </Row>
       <Row>
-        <Col className='text-center' xs={12} md={3} >
-          <h4>Osaaminen</h4>
+        <Col xs={12} md={3} >
+          <h4 className='text-center'>Arvostelut</h4>
+          <ReviewsAccordion bookReviews={bookReviews} courseReviews={courseReviews} />
+          <h4 className='text-center'>Osaaminen</h4>
           <ListGroup variant='flush'>
             {hacker && hacker.skills.sort(skillByKnowHow).map(skill =>
               <ListGroup.Item key={skill.id} >
-                {skill.name + ' ' + roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}
+                {skill.name}<span style={{ float:'right' }}>{roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}</span>
               </ListGroup.Item>
             )}
           </ListGroup>
         </Col>
-        <Col xs={12} md={6} >
-        </Col>
-        <Col xs={12} md={3} >
-          <h4>Arvostelut</h4>
-          <ListGroup variant='flush'>
-            {reviews && reviews.map(review =>
-              <ListGroup.Item key={review.id} >
-                {review.book && review.book.name} {review.course && review.course.name}
-              </ListGroup.Item>
-            )}
-          </ListGroup>
+        <Col xs={12} md={9} >
+          <h4 className='text-center'>Projektit</h4>
+          <ProjectsTable projects={hacker.projects} />
         </Col>
       </Row>
     </>

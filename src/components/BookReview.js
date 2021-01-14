@@ -9,8 +9,9 @@ const BookReview = ({ review }) =>
   <Card className='mb-3'>
     <Card.Body>
       <Card.Title>
+        <span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span>
         <Link to={`/books/${review.book.id}`}>
-          <h3>{review.book.name}<span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span></h3>
+          <h4>{review.book.name}</h4>
         </Link>
       </Card.Title>
       <Card.Subtitle className='text-muted mb-2 pb-2'>

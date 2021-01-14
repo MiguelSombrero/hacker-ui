@@ -14,16 +14,18 @@ const Hackers = () => {
 
   const hackers = useSelector(state => state.hackers)
 
-  const filterContains = skill => filters.length === 0 ||
-    filters.some(filter => skill.name.toLowerCase() === filter.toLowerCase())
+  const filtersContainsSkill = skill => filters.length === 0 ||
+    filters.some(filter =>
+      skill.name.toLowerCase().includes(filter.toLowerCase()))
 
   const hasAllOfSkills = hacker =>
-    filters.every(filter => hacker.skills.some(skill =>
-      skill.name.toLowerCase() === filter.toLowerCase()))
+    filters.every(filter =>
+      hacker.skills.some(skill =>
+        skill.name.toLowerCase().includes(filter.toLowerCase())))
 
   const bySumOfFilteredSkills = (a, b) => {
-    const sumA = a.skills.filter(filterContains).reduce(skillBySumOfKnowHows, 0)
-    const sumB = b.skills.filter(filterContains).reduce(skillBySumOfKnowHows, 0)
+    const sumA = a.skills.filter(filtersContainsSkill).reduce(skillBySumOfKnowHows, 0)
+    const sumB = b.skills.filter(filtersContainsSkill).reduce(skillBySumOfKnowHows, 0)
 
     return (sumA > sumB) ? -1 : 1
   }
@@ -46,7 +48,7 @@ const Hackers = () => {
       <Row>
         <Col xs={12} md={4}>
           {hackersToShow.map(hacker =>
-            <HackerSearchResult key={hacker.id} hacker={hacker} filterContains={filterContains} handleAddToTeam={handleAddToTeam} />
+            <HackerSearchResult key={hacker.id} hacker={hacker} skills={hacker.skills.filter(filtersContainsSkill)} handleAddToTeam={handleAddToTeam} />
           )}
         </Col>
         <Col xs={12} md={8}>

@@ -9,8 +9,9 @@ const CourseReview = ({ review }) =>
   <Card className='mb-3'>
     <Card.Body>
       <Card.Title>
+        <span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span>
         <Link to={`/courses/${review.course.id}`}>
-          <h3>{review.course.name}<span style={{ float: 'right' }}><RatingBadge rating={review.rating} /></span></h3>
+          <h4>{review.course.name}</h4>
         </Link>
       </Card.Title>
       <Card.Text>

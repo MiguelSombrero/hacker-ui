@@ -1,6 +1,6 @@
 
 context('Contents of Front page', () => {
-  beforeEach(function() {
+  before(function() {
     cy.visit('http://localhost:3000')
   })
 
@@ -8,31 +8,65 @@ context('Contents of Front page', () => {
     it('.should() - make an assertion about front navbar', function() {
       cy.contains('Koti')
       cy.contains('Kirjat')
+      cy.contains('Kurssit')
       cy.contains('Hakkerit')
     })
 
     it('.should() - make an assertion about front page html', function() {
       cy.contains('Hakkeri Portaali')
-      cy.contains('Uusimmat kirja-arviot')
+      cy.contains('Kuukauden arvostelut')
+      cy.contains('Käydyimmät kurssit')
+      cy.contains('Luetuimmat kirjat')
     })
   })
 
-  describe('Front page is showing reviews correctly', function() {
-    it('.should() - show 5 reviews at start up', function() {
-      cy.get('.card').should('have.length', 5)
+  describe('Front page is showing review counts correctly', function() {
+    it('.should() - show reviews count at start up', function() {
+      cy.get('#hack-o-meter')
+        .find('.list-group-item')
+        .should('have.length.at.least', 10)
+
+      cy.get('html').should('contain', 'December 2020')
+    })
+  })
+
+  describe('Front page is showing books correctly', function() {
+    it('.should() - show list of books', function() {
+      cy.get('#books-list')
+        .find('.list-group-item')
+        .should('have.length.at.least', 10)
     })
 
-    it('.should() - show 10 reviews when clicked once', function() {
-      cy.contains('Lataa lisää')
-      cy.get('#show-more-button').click()
-      cy.get('.card').should('have.length', 10)
+    it('.should() - have sorted books list by max reviews', function() {
+      cy.get('#books-list')
+        .find('.list-group-item')
+        .eq(0)
+        .should('contain', 'Arvosteluja 29')
+
+      cy.get('#books-list')
+        .find('.list-group-item')
+        .eq(1)
+        .should('contain', 'Arvosteluja 18')
+    })
+  })
+
+  describe('Front page is showing courses correctly', function() {
+    it('.should() - show list of courses', function() {
+      cy.get('#courses-list')
+        .find('.list-group-item')
+        .should('have.length.at.least', 10)
     })
 
-    it('.should() - show 15 reviews when clicked twice', function() {
-      cy.contains('Lataa lisää')
-      cy.get('#show-more-button').click()
-      cy.get('#show-more-button').click()
-      cy.get('.card').should('have.length', 15)
+    it('.should() - have sorted courses list by max reviews', function() {
+      cy.get('#courses-list')
+        .find('.list-group-item')
+        .eq(0)
+        .should('contain', 'Arvosteluja 4')
+
+      cy.get('#courses-list')
+        .find('.list-group-item')
+        .eq(3)
+        .should('contain', 'Arvosteluja 3')
     })
   })
 })
