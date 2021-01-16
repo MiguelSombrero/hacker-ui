@@ -1,4 +1,4 @@
-import { reviewByGreatestCreated, skillBySumOfKnowHows } from './reducers'
+import { skillBySumOfKnowHows } from './reducers'
 
 export const skillByKnowHow = (current, next) =>
   current.knowHowMonths > next.knowHowMonths ? -1 : 1

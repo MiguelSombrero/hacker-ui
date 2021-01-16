@@ -24,7 +24,7 @@ const FrontPage = () => {
         <Banner text='Hakkeri Portaali' />
       </Row>
       <Row>
-        <Col xs={12} md={4} >
+        <Col xs={12} md={3} >
           <h3 className='p-3'>Kuukauden arvostelut</h3>
           <HackOMeter entries={reviewCount}/>
         </Col>
