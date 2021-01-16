@@ -5,6 +5,9 @@ import { roundTo1Dec } from '../functions/numbers'
 import { ListGroup } from 'react-bootstrap'
 
 const KnowHowPanel = ({ team }) => {
+  if (team.length === 0) {
+    return null
+  }
 
   const maxSkills = Object.values(team
     .map(hacker => hacker.skills).flat()
