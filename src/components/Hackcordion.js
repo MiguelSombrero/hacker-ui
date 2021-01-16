@@ -1,7 +1,9 @@
 import React from 'react'
 import { ListGroup, Card, Accordion } from 'react-bootstrap'
+import { skillByKnowHow } from '../functions/sorting'
+import { roundTo1Dec } from '../functions/numbers'
 
-const ReviewsAccordion = ({ bookReviews, courseReviews }) =>
+const Hackcordion = ({ bookReviews, courseReviews, skills }) =>
   <Accordion className='mb-2' >
     <Card>
       <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -37,6 +39,23 @@ const ReviewsAccordion = ({ bookReviews, courseReviews }) =>
         }
       </Accordion.Collapse>
     </Card>
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey="2">
+        Osaaminen
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey="2">
+        {skills && skills.length > 0 ?
+          <ListGroup variant='flush'>
+            {skills && skills.sort(skillByKnowHow).map(skill =>
+              <ListGroup.Item key={skill.id} >
+                {skill.name}<span style={{ float:'right' }}>{roundTo1Dec(skill.knowHowMonths / 12) + ' vuotta'}</span>
+              </ListGroup.Item>
+            )}
+          </ListGroup>
+          : <Card.Body>Ei osaamista</Card.Body>
+        }
+      </Accordion.Collapse>
+    </Card>
   </Accordion>
 
-export default ReviewsAccordion
+export default Hackcordion

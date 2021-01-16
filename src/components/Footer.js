@@ -4,7 +4,7 @@ import { HashLink } from 'react-router-hash-link'
 import { GoMarkGithub, GoHome, GoArrowUp } from 'react-icons/go'
 
 const Footer = () =>
-  <Row className='footer mt-3'>
+  <Row className='footer mt-2'>
     <Col>
       <Nav className='justify-content-center'>
         <Nav.Link as='span'>

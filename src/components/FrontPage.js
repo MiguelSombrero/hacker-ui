@@ -28,7 +28,7 @@ const FrontPage = () => {
           <h3 className='p-3'>Kuukauden arvostelut</h3>
           <HackOMeter entries={reviewCount}/>
         </Col>
-        <Col xs={12} md={4} >
+        <Col xs={12} md={4}>
           <h3 className='p-3' >Luetuimmat kirjat</h3>
           <ListGroup id='books-list' variant='flush'>
             {books.sort(contentByReviewsCount).map(book =>
@@ -36,7 +36,7 @@ const FrontPage = () => {
             )}
           </ListGroup>
         </Col>
-        <Col xs={12} md={4} >
+        <Col xs={12} md={4}>
           <h3 className='p-3' >Käydyimmät kurssit</h3>
           <ListGroup id='courses-list' variant='flush'>
             {courses.sort(contentByReviewsCount).map(course =>

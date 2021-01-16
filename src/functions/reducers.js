@@ -5,9 +5,6 @@ export const skillByMaxKnowHow = (r, current) => {
   return r
 }
 
-export const reviewByGreatestCreated = (current, next) =>
-  (current.created > next.created) ? current : next
-
 export const skillBySumOfKnowHows = (sum, next) => sum + next.knowHowMonths
 
 export const reviewByCreateDate = (array, review) => {

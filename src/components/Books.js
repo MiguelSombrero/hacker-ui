@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Button } from 'react-bootstrap'
+import { Row, Col, ListGroup, Button, Card } from 'react-bootstrap'
 import { useFilters } from '../hooks'
 import { contentByRating } from '../functions/sorting'
 import SearchBar from './SearchBar'
@@ -47,11 +47,13 @@ const Books = () => {
         </Col>
         <Col id='books-column' xs={12} md={8}>
           <h2 className='p-2 text-center'>Kirjat</h2>
-          <ListGroup variant='flush' className='text-center'>
-            {booksToShow.map(book =>
-              <Book key={book.id} book={book} />
-            )}
-          </ListGroup>
+          <Card>
+            <ListGroup variant='flush' className='text-center'>
+              {booksToShow.map(book =>
+                <Book key={book.id} book={book} />
+              )}
+            </ListGroup>
+          </Card>
           <Row>
             <Col className='d-flex justify-content-center m-2'>
               {books.length > visibleBooks &&

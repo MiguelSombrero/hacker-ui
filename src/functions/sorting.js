@@ -6,9 +6,6 @@ export const skillByKnowHow = (current, next) =>
 export const employeeBySumOfSkillKnowHows = (current, next) =>
   current.skills.reduce(skillBySumOfKnowHows, 0) > next.skills.reduce(skillBySumOfKnowHows, 0) ? -1 : 1
 
-export const bookByReviewCreated = (current, next) =>
-  current.reviews.reduce(reviewByGreatestCreated).created > next.reviews.reduce(reviewByGreatestCreated).created ? -1 : 1
-
 export const contentByRating = (current, next) =>
   current.rating > next.rating ? -1 : 1
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Button } from 'react-bootstrap'
+import { Row, Col, ListGroup, Button, Card } from 'react-bootstrap'
 import { useFilters } from '../hooks'
 import { contentByRating } from '../functions/sorting'
 import SearchBar from './SearchBar'
@@ -32,7 +32,7 @@ const Courses = () => {
     <>
       <SearchBar id='filter-courses-field' onChange={onChange} title='Etsi kursseja' placeholder='react, scrum mastery, ...' />
       <Row>
-        <Col xs={12} md={4} >
+        <Col xs={12} md={4}>
           <h2 className='p-2 text-center'>Uusimmat kurssi-arviot</h2>
           {courseReviewsToShow.map(review =>
             <CourseReview key={review.id} review={review} />
@@ -47,11 +47,13 @@ const Courses = () => {
         </Col>
         <Col xs={12} md={8}>
           <h2 className='p-2 text-center'>Kurssit</h2>
-          <ListGroup variant='flush' className='text-center'>
-            {coursesToShow.map(course =>
-              <Course key={course.id} course={course} />
-            )}
-          </ListGroup>
+          <Card>
+            <ListGroup variant='flush' className='text-center'>
+              {coursesToShow.map(course =>
+                <Course key={course.id} course={course} />
+              )}
+            </ListGroup>
+          </Card>
           <Row>
             <Col className='d-flex justify-content-center m-2'>
               {courses.length > visibleCourses &&
