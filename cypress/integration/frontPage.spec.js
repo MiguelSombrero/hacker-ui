@@ -14,7 +14,7 @@ context('Contents of Front page', () => {
 
     it('.should() - make an assertion about front page html', function() {
       cy.contains('Hakkeri Portaali')
-      cy.contains('Kuukauden arvostelut')
+      cy.contains('Arvioita')
       cy.contains('Käydyimmät kurssit')
       cy.contains('Luetuimmat kirjat')
     })

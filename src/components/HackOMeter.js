@@ -2,7 +2,7 @@ import React from 'react'
 import { ListGroup, Badge } from 'react-bootstrap'
 import moment from 'moment'
 
-const HackOMeter = ({ entries }) => {
+const HackOMeter = ({ month }) => {
 
   const setColor = (month) => {
     if (month.count < 20) {
@@ -27,15 +27,11 @@ const HackOMeter = ({ entries }) => {
   }
 
   return (
-    <ListGroup id='hack-o-meter' variant='flush'>
-      {entries.map(month =>
-        <ListGroup.Item key={month.date} style={{ backgroundColor: `${setColor(month)}` }}>
-          <h5>
-            {moment(month.date).format('MMMM YYYY')}<span style={{ float: 'right' }}><Badge variant='secondary'>{month.count}</Badge></span>
-          </h5>
-        </ListGroup.Item>
-      )}
-    </ListGroup>
+    <ListGroup.Item style={{ backgroundColor: `${setColor(month)}` }}>
+      <p>
+        {moment(month.date).format('MMMM YYYY')}<span style={{ float: 'right' }}><Badge variant='secondary'>{month.count}</Badge></span>
+      </p>
+    </ListGroup.Item>
   )
 }
 

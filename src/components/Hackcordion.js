@@ -2,19 +2,20 @@ import React from 'react'
 import { ListGroup, Card, Accordion } from 'react-bootstrap'
 import { skillByKnowHow } from '../functions/sorting'
 import { roundTo1Dec } from '../functions/numbers'
+import LinkToBooksPage from './elements/LinkToBooksPage'
 
 const Hackcordion = ({ bookReviews, courseReviews, skills }) =>
   <Accordion className='mb-2' >
-    <Card>
+    <Card className='mb-2'>
       <Accordion.Toggle as={Card.Header} eventKey="0">
-        Kirja-arvostelut
+        <Card.Title className='text-center' style={{ color: 'blue' }}>Kirja-arvostelut</Card.Title>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="0">
         {bookReviews && bookReviews.length > 0 ?
           <ListGroup variant='flush'>
             {bookReviews.map(review =>
               <ListGroup.Item key={review.id} >
-                {review.book.name}
+                <LinkToBooksPage book={review.book} />
               </ListGroup.Item>
             )}
           </ListGroup>
@@ -22,9 +23,9 @@ const Hackcordion = ({ bookReviews, courseReviews, skills }) =>
         }
       </Accordion.Collapse>
     </Card>
-    <Card>
+    <Card className='mb-2'>
       <Accordion.Toggle as={Card.Header} eventKey="1">
-        Kurssi-arvostelut
+        <Card.Title className='text-center' style={{ color: 'blue' }}>Kurssi-arvostelut</Card.Title>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="1">
         {courseReviews && courseReviews.length > 0 ?
@@ -39,9 +40,9 @@ const Hackcordion = ({ bookReviews, courseReviews, skills }) =>
         }
       </Accordion.Collapse>
     </Card>
-    <Card>
+    <Card className='mb-2'>
       <Accordion.Toggle as={Card.Header} eventKey="2">
-        Osaaminen
+        <Card.Title className='text-center' style={{ color: 'blue' }}>Osaaminen</Card.Title>
       </Accordion.Toggle>
       <Accordion.Collapse eventKey="2">
         {skills && skills.length > 0 ?

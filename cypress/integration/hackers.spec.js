@@ -21,7 +21,6 @@ context('Contents of Hackers page', () => {
 
     it('.should() - make an assertion about titles', function() {
       cy.contains('Tiimissä 0 hakkeria')
-      cy.contains('Tiimin osaaminen')
     })
   })
 
@@ -92,15 +91,13 @@ context('Contents of Hackers page', () => {
 
   describe('Adding hackers to team', function() {
     it('.should() - not contain any hackers in team at start', function() {
-      cy.contains('Ei näy kettään')
-      cy.contains('Ei ossaa mittään')
+      cy.contains('Tiimissä 0 hakkeria')
     })
 
     it('.should() - add hacker to team when pressed add button', function() {
       cy.get('.card').first().find('button').first().click()
 
-      cy.get('html').should('not.contain', 'Ei näy kettään')
-      cy.get('html').should('not.contain', 'Ei ossaa mittään')
+      cy.contains('Tiimissä 1 hakkeria')
       cy.get('#knowhow-list').should('contain', 'Maven 31 vuotta')
       cy.get('#team-list').should('contain', 'Timo Sorsamaki')
     })
@@ -109,8 +106,7 @@ context('Contents of Hackers page', () => {
       cy.get('.card').eq(0).find('button').first().click()
       cy.get('.card').eq(1).find('button').first().click()
 
-      cy.get('html').should('not.contain', 'Ei näy kettään')
-      cy.get('html').should('not.contain', 'Ei ossaa mittään')
+      cy.contains('Tiimissä 2 hakkeria')
       cy.get('#knowhow-list').should('contain', 'Maven 31 vuotta')
       cy.get('#team-list').should('contain', 'Timo Sorsamaki')
       cy.get('#knowhow-list').should('contain', 'Sql 20 vuotta')
