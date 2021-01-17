@@ -7,8 +7,8 @@ import { BrowserRouter } from 'react-router-dom'
 import helper from '../setupTests'
 import Hackers from './Hackers'
 
-const mockStore = configureStore([]);
- 
+const mockStore = configureStore([])
+
 describe('Hackers component', () => {
   let store
   let component
@@ -29,7 +29,7 @@ describe('Hackers component', () => {
       </Provider>
     )
   })
- 
+
   it('should render hackers from state', () => {
     expect(component.container).toHaveTextContent('Miika Somero')
     expect(component.container).toHaveTextContent('Testi Testinen')

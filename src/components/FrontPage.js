@@ -24,20 +24,24 @@ const FrontPage = () => {
         <Banner text='Hakkeri Portaali' />
       </Row>
       <Row>
-        <Col xs={12} md={3} >
-          <h3 className='p-3'>Kuukauden arvostelut</h3>
-          <HackOMeter entries={reviewCount}/>
+        <Col xs={12} md={{ span: 3, offset: 1 }} >
+          <h3 className='mb-3'>Arvioita</h3>
+          <ListGroup id='hack-o-meter' variant='flush'>
+            {reviewCount.map(month =>
+              <HackOMeter key={month.date} month={month}/>
+            )}
+          </ListGroup>
         </Col>
-        <Col xs={12} md={4}>
-          <h3 className='p-3' >Luetuimmat kirjat</h3>
+        <Col xs={12} md={3}>
+          <h3 className='mb-3' >Luetuimmat kirjat</h3>
           <ListGroup id='books-list' variant='flush'>
             {books.sort(contentByReviewsCount).map(book =>
               <ListItem key={book.id} item={book} link={`/books/${book.id}`} />
             )}
           </ListGroup>
         </Col>
-        <Col xs={12} md={4}>
-          <h3 className='p-3' >Käydyimmät kurssit</h3>
+        <Col xs={12} md={3}>
+          <h3 className='mb-3' >Käydyimmät kurssit</h3>
           <ListGroup id='courses-list' variant='flush'>
             {courses.sort(contentByReviewsCount).map(course =>
               <ListItem key={course.id} item={course} link={`/courses/${course.id}`} />

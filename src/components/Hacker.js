@@ -28,11 +28,11 @@ const Hacker = () => {
       </Row>
       <Row>
         <Col xs={12} md={3} >
-          <h4 className='text-center'>Hakkeruus</h4>
+          <h3 className='text-center'>Hakkeruus</h3>
           <Hackcordion bookReviews={bookReviews} courseReviews={courseReviews} skills={hacker.skills} />
         </Col>
         <Col xs={12} md={9} >
-          <h4 className='text-center'>Projektit</h4>
+          <h3 className='text-center'>Projektit</h3>
           <ProjectsTable projects={hacker.projects} />
         </Col>
       </Row>
