@@ -24,16 +24,16 @@ const Hacker = () => {
   return (
     <>
       <Row>
-        <Banner text={[hacker.firstName, hacker.lastName].join(' ')} />
+        <Banner text={hacker ? [hacker.firstName, hacker.lastName].join(' ') : 'Nimetön'} />
       </Row>
       <Row>
         <Col xs={12} md={3} >
           <h3 className='text-center'>Hakkeruus</h3>
-          <Hackcordion bookReviews={bookReviews} courseReviews={courseReviews} skills={hacker.skills} />
+          <Hackcordion bookReviews={bookReviews} courseReviews={courseReviews} skills={hacker ? hacker.skills : []} />
         </Col>
         <Col xs={12} md={9} >
           <h3 className='text-center'>Projektit</h3>
-          <ProjectsTable projects={hacker.projects} />
+          <ProjectsTable projects={hacker ? hacker.projects : []} />
         </Col>
       </Row>
     </>
