@@ -11,7 +11,7 @@ const BooksForm = (props) => {
   const [validated, setValidated] = useState(false)
   const [email, emailErrors] = useTextField('text', 5, 50, true)
   const [bookName, bookNameErrors] = useTextField('text', 1, 50, true)
-  const [bookDuration, bookDurationErrors] = useTextField('text', 5, 10, true)
+  const [bookDuration, bookDurationErrors] = useTextField('text', 3, 10, true)
   const [bookAuthors, bookAuthorsErrors] = useTextField('text', 1, 50, true)
   const [review, reviewErrors] = useTextField('text', 1, 1000, true)
   const [rating] = useNumberField('range', 1, 5, 1, true)
@@ -46,6 +46,7 @@ const BooksForm = (props) => {
   return (
     <Row>
       <Col className='form'>
+        <h3 className='mb-3' >Arvioi kirja</h3>
         <Form noValidate validated={validated} onSubmit={handleAddBook} >
           <Form.Group >
             <Form.Label>Email</Form.Label>
@@ -73,16 +74,16 @@ const BooksForm = (props) => {
             <Form.Control.Feedback type='invalid' >{bookAuthorsErrors}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group >
-            <Form.Label>Arvio</Form.Label>
+            <Form.Label>Mitä mieltä olit kirjasta</Form.Label>
             <Form.Control as='textarea' rows='4' {...review} />
             <Form.Control.Feedback type='invalid' >{reviewErrors}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group >
-            <Form.Label>Arvio</Form.Label>
+            <Form.Label>Arvosana</Form.Label>
             <Form.Text>{rating.value}</Form.Text>
-            <Form.Control {...rating} />
+            <Form.Control {...rating}/>
           </Form.Group>
-          <Button type='submit' variant='secondary'>Lisää kirja</Button>
+          <Button type='submit' variant='secondary'>Lisää kirja-arvio</Button>
         </Form>
       </Col>
     </Row>
