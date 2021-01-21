@@ -17,6 +17,8 @@ const studiesReducer = (state = initialState, action) => {
     return { ...state, courses: action.courses }
   case 'GET_BOOK_REVIEWS':
     return { ...state, bookReviews: action.bookReviews }
+  case 'CREATE_BOOK_REVIEW':
+    return { ...state, bookReviews: [ ...state.bookReviews, action.bookReview ] }
   case 'GET_COURSE_REVIEWS':
     return { ...state, courseReviews: action.courseReviews }
   default:
@@ -53,6 +55,17 @@ export const getBookReviews = () => {
     dispatch({
       type: 'GET_BOOK_REVIEWS',
       bookReviews
+    })
+  }
+}
+
+export const createBookReview = (review) => {
+  return async dispatch => {
+    const bookReview = await studiesService.create('/books/reviews', review)
+
+    dispatch({
+      type: 'CREATE_BOOK_REVIEW',
+      bookReview
     })
   }
 }
