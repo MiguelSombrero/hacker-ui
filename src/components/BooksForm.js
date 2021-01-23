@@ -51,6 +51,7 @@ const BooksForm = (props) => {
   return (
     <Row>
       <Col className='form'>
+        <h3 className='mb-3' >Arvioi kirja</h3>
         <Form noValidate validated={validated} onSubmit={handleAddBook} >
           <Form.Group >
             <Form.Label>Email</Form.Label>
@@ -78,16 +79,16 @@ const BooksForm = (props) => {
             <Form.Control.Feedback type='invalid' >{bookAuthorsErrors}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group >
-            <Form.Label>Arvio</Form.Label>
+            <Form.Label>Mitä mieltä olit kirjasta</Form.Label>
             <Form.Control as='textarea' rows='4' {...review} />
             <Form.Control.Feedback type='invalid' >{reviewErrors}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group >
-            <Form.Label>Arvio</Form.Label>
+            <Form.Label>Arvosana</Form.Label>
             <Form.Text>{rating.value}</Form.Text>
-            <Form.Control {...rating} />
+            <Form.Control {...rating}/>
           </Form.Group>
-          <Button type='submit' variant='secondary'>Lisää kirja</Button>
+          <Button type='submit' variant='secondary'>Lisää kirja-arvio</Button>
         </Form>
       </Col>
     </Row>

@@ -23,7 +23,7 @@ export const useTextField = (type, minLength, maxLength, required = false) => {
   }
 
   const onInvalid = () => {
-    setValidationMessage('field must be within ' + minLength + '-' + maxLength + ' characters')
+    setValidationMessage('Tekstin tulee olla ' + minLength + '-' + maxLength + ' merkkiä')
   }
 
   return [
@@ -50,7 +50,7 @@ export const useNumberField = (type, min, max, step = 1, required = false) => {
   }
 
   const onInvalid = (event) => {
-    setValidationMessage('field must be within ' + min + '-' + max)
+    setValidationMessage('Arvon pitää olla välillä ' + min + '-' + max)
   }
 
   return [
