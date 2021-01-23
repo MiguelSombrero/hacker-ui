@@ -7,9 +7,13 @@ import Hackers from './Hackers'
 import Hacker from './Hacker'
 import Courses from './Courses'
 import CoursePage from './CoursePage'
+import BooksForm from './BooksForm'
 
 const Router = () =>
   <Switch>
+    <Route exact path='/books/add'>
+      <BooksForm />
+    </Route>
     <Route path='/books/:bookId'>
       <BookPage />
     </Route>

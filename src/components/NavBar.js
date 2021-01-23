@@ -12,7 +12,10 @@ const NavBar = () =>
             <NavLink to='/' >Koti</NavLink>
           </Nav.Link>
           <Nav.Link href='#' as='span'>
-            <NavLink to='/books' >Kirjat</NavLink>
+            <NavLink to='/books' >Selaa kirjoja</NavLink>
+          </Nav.Link>
+          <Nav.Link href='#' as='span'>
+            <NavLink to='/books/add' >Lisää kirja-arvio</NavLink>
           </Nav.Link>
           <Nav.Link href='#' as='span'>
             <NavLink to='/courses' >Kurssit</NavLink>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Button, Card } from 'react-bootstrap'
 import { useFilters } from '../hooks'
-import { contentByRating } from '../functions/sorting'
+import { contentByRating, reviewByCreated } from '../functions/sorting'
 import SearchBar from './SearchBar'
 import BookReview from './BookReview'
 import Book from './Book'
@@ -22,7 +22,10 @@ const Books = () => {
 
   const booksToShow = books.slice(0, visibleBooks)
 
-  const bookReviews = useSelector(state => state.studies.bookReviews)
+  const bookReviews = useSelector(state => state.studies.bookReviews
+    .sort(reviewByCreated)
+  )
+
   const bookReviewsToShow = bookReviews.slice(0, visibleBookReviews)
 
   const handleShowMoreBooks = () => setVisibleBooks(visibleBooks + 10)

@@ -12,7 +12,14 @@ export const Service = (baseUrl) => {
     return res.data
   }
 
+  const create = async (path, resource) => {
+    const res = await axios.post(`${baseUrl}/${path}`, resource)
+    return res.data
+  }
+
   return  {
-    getAll, getResource
+    getAll,
+    getResource,
+    create
   }
 }
