@@ -11,7 +11,7 @@ const BooksForm = (props) => {
   const [validated, setValidated] = useState(false)
   const [email, emailErrors] = useTextField('text', 5, 50, true)
   const [bookName, bookNameErrors] = useTextField('text', 1, 50, true)
-  const [bookDuration, bookDurationErrors] = useTextField('text', 5, 10, true)
+  const [bookDuration, bookDurationErrors] = useNumberField('number', 1, 1000, 0.1, true)
   const [bookAuthors, bookAuthorsErrors] = useTextField('text', 1, 50, true)
   const [review, reviewErrors] = useTextField('text', 1, 1000, true)
   const [rating] = useNumberField('range', 1, 5, 1, true)
@@ -28,12 +28,17 @@ const BooksForm = (props) => {
 
     try {
       dispatch(createBookReview({
-        email: email.value,
-        bookName: bookName.value,
-        bookDuration: bookDuration.value,
-        bookAuthors: bookAuthors.value,
         review: review.value,
-        rating: rating.value
+        rating: rating.value,
+        reviewer: {
+          email: email.value
+        },
+        book: {
+          type: 'AUDIO',
+          name: bookName.value,
+          duration: bookDuration.value,
+          authors: bookAuthors.value,
+        }
       }))
 
       props.history.push('/books')
@@ -64,7 +69,7 @@ const BooksForm = (props) => {
           </Form.Group>
           <Form.Group >
             <Form.Label>Kirjan kesto</Form.Label>
-            <Form.Control {...bookDuration} placeholder='muodossa hh:mm' />
+            <Form.Control {...bookDuration} placeholder='minuutteina' />
             <Form.Control.Feedback type='invalid' >{bookDurationErrors}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group >
